@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김하린 영어 발전 보고서</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #e5863e;
+            --primary-light: #f7d4b5;
+            --primary-dark: #d06b25;
+            --secondary: #475569;
+            --accent: #f8fafc;
+            --high: #ef4444;
+            --medium: #f59e0b;
+            --low: #10b981;
+            --text-dark: #334155;
+            --text-light: #f8fafc;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --radius: 12px;
+            --blue: #3b82f6;
+            --blue-light: #bfdbfe;
+            --blue-dark: #1d4ed8;
+            --green: #10b981;
+            --green-light: #d1fae5;
+            --purple: #8b5cf6;
+            --purple-light: #ddd6fe;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--accent);
+            line-height: 1.4;
+            font-size: 14px;
+            padding-bottom: 60px;
+        }
+        
+        /* Typography */
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #000 0%, #6f6e6e 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        
+        h2 {
+            font-size: 16px;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        
+        h3 {
+            font-size: 18px;
+            color: var(--primary-dark);
+            font-weight: 700;
+            margin: 24px 0 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h3 i {
+            margin-right: 8px;
+        }
+        
+        p {
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        
+        /* Layout Components */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        
+        .header {
+            padding: 20px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .logo-date {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .two-column {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .column-60 {
+            flex: 1 1 60%;
+            min-width: 250px;
+        }
+        
+        .column-40 {
+            flex: 1 1 40%;
+            min-width: 200px;
+        }
+        
+        /* Component Styles */
+        .executive-summary {
+            background: linear-gradient(135deg, var(--primary-light) 0%, white 100%);
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        
+        .kpi-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .kpi-title {
+            font-size: 14px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .kpi-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .kpi-value {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .kpi-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .highlight {
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+        
+        .factor-box {
+            background-color: var(--primary-light);
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .factor-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+            font-size: 15px;
+        }
+        
+        .progress-item {
+            margin-bottom: 16px;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+        
+        .progress-title {
+            font-weight: 600;
+        }
+        
+        .progress-value {
+            font-weight: 700;
+        }
+        
+        .progress-value.high {
+            color: var(--high);
+        }
+        
+        .progress-value.medium {
+            color: var(--medium);
+        }
+        
+        .progress-value.low {
+            color: var(--low);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e9e9e9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .progress-fill.high {
+            background-color: var(--high);
+        }
+        
+        .progress-fill.medium {
+            background-color: var(--medium);
+        }
+        
+        .progress-fill.low {
+            background-color: var(--low);
+        }
+        
+        .progress-fill.primary {
+            background-color: var(--primary);
+        }
+        
+        .progress-fill.blue {
+            background-color: var(--blue);
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--primary-light);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding-left: 40px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 7px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            border: 3px solid white;
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .timeline-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+        
+        .timeline-blue .timeline-dot {
+            background-color: var(--blue);
+        }
+
+        .timeline-blue::before {
+            background-color: var(--blue-light);
+        }
+
+        .timeline-purple .timeline-dot {
+            background-color: var(--purple);
+        }
+
+        .timeline-purple::before {
+            background-color: var(--purple-light);
+        }
+        
+        .book-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .book-item {
+            background-color: var(--primary-light);
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .book-item.blue {
+            background-color: var(--blue-light);
+        }
+        
+        .book-level {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+        
+        .book-level.blue {
+            background-color: var(--blue);
+        }
+        
+        .quote {
+            border-left: 3px solid var(--primary);
+            padding-left: 12px;
+            margin: 12px 0;
+            font-style: italic;
+            font-size: 13px;
+            color: var(--secondary);
+        }
+        
+        .quote.blue {
+            border-left: 3px solid var(--blue);
+        }
+        
+        .quote.purple {
+            border-left: 3px solid var(--purple);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+        
+        .badge-primary {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+        }
+        
+        .badge-high {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--high);
+        }
+        
+        .badge-medium {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--medium);
+        }
+        
+        .badge-low {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--low);
+        }
+        
+        .badge-blue {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--blue);
+        }
+        
+        .badge-purple {
+            background-color: rgba(139, 92, 246, 0.1);
+            color: var(--purple);
+        }
+        
+        .checklist-item {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        
+        .checklist-icon {
+            color: var(--primary);
+            margin-right: 8px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .character-analysis-box {
+            background-color: var(--blue-light);
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--blue);
+        }
+        
+        .character-analysis-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--blue-dark);
+            font-size: 15px;
+        }
+        
+        .footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 20px 0;
+            margin-top: 40px;
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        .footer img {
+            height: 30px;
+            margin-bottom: 12px;
+        }
+        
+        /* Icons */
+        .icon {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background-color: currentColor;
+            margin-right: 6px;
+            vertical-align: middle;
+            -webkit-mask-size: cover;
+            mask-size: cover;
+        }
+        
+        .icon-chart {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 12h4v8H3v-8zm7-8h4v16h-4V4zm7 4h4v12h-4V8z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 12h4v8H3v-8zm7-8h4v16h-4V4zm7 4h4v12h-4V8z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-book {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21a9 9 0 0 1-9-9 9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9zm0-18C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm1 14h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21a9 9 0 0 1-9-9 9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9zm0-18C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm1 14h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-speech {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z'/%3E%3Cpath d='M7 9h10v2H7zM7 6h10v2H7zM7 12h7v2H7z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z'/%3E%3Cpath d='M7 9h10v2H7zM7 6h10v2H7zM7 12h7v2H7z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-writing {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-growth {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-future {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-check {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+            width: 18px;
+            height: 18px;
+        }
+        
+        .icon-user {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
+        }
+        
+        .skill-group {
+            display: flex;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-card {
+            flex: 1;
+            min-width: 150px;
+            background: white;
+            border-radius: var(--radius);
+            padding: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .skill-title {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .rounded-progress {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            margin: 0 auto 10px;
+        }
+
+        .rounded-progress-fill {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            text-align: center;
+            line-height: 60px;
+            font-weight: bold;
+            font-size: 16px;
+            color: white;
+        }
+
+        .rounded-progress-fill.blue {
+            background: var(--blue);
+        }
+
+        .rounded-progress-fill.purple {
+            background: var(--purple);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <h1>김하린 (Harin)</h1>
+                    <h2>영어 발전 보고서</h2>
+                </div>
+                <div class="won-jang-signature">이노블스 강남점 KJ Lee 원장
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Executive Summary -->
+        <div class="executive-summary">
+            <p>Harin(하린)은 2025년 1월부터 3월까지 <span class="highlight">뛰어난 영어 발전</span>을 보여주었습니다. 특히 주목할 만한 점은 <span class="highlight">인물 관계 분석 능력</span>과 <span class="highlight">문맥 기반 추론 능력</span>의 발전으로, 복잡한 이야기 속에서 등장인물들의 관계와 동기를 깊이 있게 이해하고 표현하는 능력이 크게 향상되었습니다.</p>
+        </div>
+        
+        <!-- Three Pillars of Harin's Development -->
+        <div class="card">
+            <h3><span class="icon icon-chart"></span> Harin의 발전 핵심 요소</h3>
+            
+            <div class="skill-group">
+                <div class="skill-card">
+                    <div class="rounded-progress">
+                        <div class="rounded-progress-fill">85%</div>
+                    </div>
+                    <div class="skill-title">인물 관계 분석</div>
+                    <p>등장인물 간의 관계와 동기를 깊이 있게 이해하고 분석하는 능력</p>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="rounded-progress">
+                        <div class="rounded-progress-fill blue">90%</div>
+                    </div>
+                    <div class="skill-title">문맥 기반 추론</div>
+                    <p>이야기의 맥락을 기반으로 심층적인 의미와 결과를 추론하는 능력</p>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="rounded-progress">
+                        <div class="rounded-progress-fill purple">75%</div>
+                    </div>
+                    <div class="skill-title">문법 정확성</div>
+                    <p>점진적으로 향상된 문법적 정확성과 적절한 단어 선택 능력</p>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">주목할 점</div>
+                <p>Harin은 <span class="highlight">등장인물들 간의 복잡한 관계와 감정</span>을 이해하고 분석하는 능력이 특히 뛰어납니다. 예를 들어, Greg와 Gramma의 관계, Astrid와 친구들 사이의 역학 관계 등을 심층적으로 분석했습니다. 또한 <span class="highlight">문맥 기반 추론 능력</span>을 통해 이야기의 표면적 의미를 넘어 더 깊은 주제와 메시지를 파악하는 모습을 보여주었습니다.</p>
+            </div>
+        </div>
+
+        <!-- Character Relationship Analysis -->
+        <div class="card">
+            <h3><span class="icon icon-user"></span> 인물 관계 분석 능력 발전</h3>
+            
+            <div class="character-analysis-box">
+                <div class="character-analysis-title">인물 관계 분석이란?</div>
+                <p>인물 관계 분석이란 이야기 속 등장인물들 사이의 상호작용, 관계 역학, 감정적 연결, 그리고 그들의 행동이 서로에게 미치는 영향을 이해하고 해석하는 능력입니다. 이는 단순한 줄거리 이해를 넘어서는 더 높은 수준의 문학적 분석 능력입니다.</p>
+            </div>
+            
+            <div class="timeline timeline-blue">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">초기 단계: 기본적 관계 파악</div>
+                        <div class="book-list">
+                            <div class="book-item blue">
+                                <div class="book-level blue">초</div>
+                                Roller Girl
+                            </div>
+                        </div>
+                        <p>초기에 Harin은 <span class="highlight">기본적인 인물 관계를 식별</span>하고 설명할 수 있었지만, 주로 표면적인 상호작용에 초점을 맞추었습니다.</p>
+                        <div class="quote blue">
+                            "Harin discussed Astrid's experiences in Roller Girl, explaining how her relationships with Nicole and Zoey influenced her growth. She practiced providing examples to support her points, improving the depth and clarity of her responses."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">중간 단계: 캐릭터 동기 이해</div>
+                        <div class="book-list">
+                            <div class="book-item blue">
+                                <div class="book-level blue">중</div>
+                                Princess in Black
+                            </div>
+                        </div>
+                        <p>이 단계에서 Harin은 <span class="highlight">등장인물의 행동 배후에 있는 동기와 감정</span>을 더 깊이 이해하기 시작했습니다.</p>
+                        <div class="quote blue">
+                            "Harin's writing showed good effort, though the teacher guided her on some key grammar points. She learned the difference between she has and she have, corrected the spelling of went, and fixed errors with using be verbs before main verbs."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">현재 단계: 복잡한 관계 역학 분석</div>
+                        <div class="book-list">
+                            <div class="book-item blue">
+                                <div class="book-level blue">상</div>
+                                The 13-Story Treehouse
+                            </div>
+                            <div class="book-item blue">
+                                <div class="book-level blue">상</div>
+                                Diary of a Wimpy Kid
+                            </div>
+                        </div>
+                        <p>현재 Harin은 <span class="highlight">복잡한 가족 역학과 인물 간 권력 관계</span>를 심층적으로 분석하는 능력을 보여주고 있습니다.</p>
+                        <div class="quote blue">
+                            "Harin discussed Greg's relationship with his Gramma, noting how her role as the family matriarch and keeper of the secret meatball recipe influenced family dynamics. She explored how Gramma's actions impacted Greg's understanding of family traditions and secrets. Harin expressed her thoughts clearly, focusing on the nuances of Greg and Gramma's interactions."
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">인물 관계 분석 향상 영역</div>
+                <ul>
+                    <li><span class="highlight">권력 관계 이해:</span> 가족 구조 내에서의 위계와 권력 관계(예: Greg와 Gramma의 관계)를 파악하는 능력이 향상되었습니다.</li>
+                    <li><span class="highlight">감정적 영향 분석:</span> 한 인물의 행동이 다른 인물에게 미치는 감정적 영향을 이해하는 능력이 발전했습니다.</li>
+                    <li><span class="highlight">암묵적 관계 파악:</span> 직접적으로 드러나지 않은 인물 간의 관계와 긴장감을 파악하는 능력이 향상되었습니다.</li>
+                    <li><span class="highlight">주제적 관련성:</span> 인물 관계가 이야기의 주요 주제와 어떻게 연결되는지 분석하는 능력이 발전했습니다.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Contextual Inference Development -->
+        <div class="card">
+            <h3><span class="icon icon-book"></span> 문맥 기반 추론 능력 발전</h3>
+            
+            <div class="timeline timeline-purple">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">초기 단계: 기본적 추론</div>
+                        <p>초기에는 <span class="highlight">명시적으로 제시된 정보</span>를 바탕으로 기본적인 추론을 할 수 있었습니다.</p>
+                        <div class="quote purple">
+                            "Harin did a great job in her speaking session today despite it being her first class. She spoke with good pronunciation and was fluent in answering follow-up questions. She described the main characters in good detail and gave interesting reasons as to why she thought they weren't nice people."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">중간 단계: 맥락 활용</div>
+                        <p>이 단계에서는 <span class="highlight">이야기의 맥락을 활용</span>하여 더 깊은 의미를 추론하기 시작했습니다.</p>
+                        <div class="quote purple">
+                            "Harin did an excellent job in speaking today, correctly answering the first question and understanding even difficult ones with precision. She was able to catch detailed parts of the story and respond clearly. However, when asked about the lesson of the book, she struggled a bit."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">현재 단계: 심층적 추론과 주제 파악</div>
+                        <p>현재는 <span class="highlight">이야기의 다양한 요소를 통합</span>하여 심층적인 추론과 주제 파악이 가능해졌습니다.</p>
+                        <div class="quote purple">
+                            "The student discussed the book and explained the various levels and unique features of the treehouse in detail. The student described the humorous and imaginative elements of the book. When summarizing the plot, there were moments of hesitation, but overall, the student was able to convey the main events clearly."
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">문맥 기반 추론 향상 영역</div>
+                <ul>
+                    <li><span class="highlight">세부 정보 연결:</span> 이야기 속 세부 정보들을 연결하여 더 큰 맥락을 파악하는 능력이 향상되었습니다.</li>
+                    <li><span class="highlight">주제 추론:</span> 표면적인 사건 너머의 더 깊은 주제와 교훈을 추론하는 능력이 발전했습니다.</li>
+                    <li><span class="highlight">암시된 정보 파악:</span> 직접적으로 언급되지 않은 정보를 맥락을 통해 추론하는 능력이 향상되었습니다.</li>
+                    <li><span class="highlight">의도 해석:</span> 작가의 의도와 묘사 방식의 효과를 이해하는 능력이 발전했습니다.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Grammar Development -->
+        <div class="card">
+            <h3><span class="icon icon-writing"></span> 문법 정확성 발전</h3>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">초기 단계: 기본 문법 습득</div>
+                        <p>초기에는 <span class="highlight">기본적인 문법 구조</span>를 이해하고 있었지만, 여러 오류가 있었습니다.</p>
+                        <div class="quote">
+                            "Harin's writing showed good effort, though the teacher guided her on some key grammar points. She learned the difference between she has and she have, corrected the spelling of went, and fixed errors with using be verbs before main verbs."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">중간 단계: 오류 인식</div>
+                        <p>이 단계에서는 <span class="highlight">자신의 문법적 오류를 더 잘 인식</span>하기 시작했으며, 교정을 통해 발전했습니다.</p>
+                        <div class="quote">
+                            "The student confused chew and knew, so I clarified the difference in meaning and pronunciation. She put in a lot of effort to complete the book report, showing strong dedication. While the overall structure was well-organized, I provided guidance on refining sentence flow and ensuring clarity. Her commitment to improving her writing is commendable!"
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">현재 단계: 향상된 정확성</div>
+                        <p>현재는 <span class="highlight">문법적 정확성이 크게 향상</span>되었으며, 더 복잡한 문장 구조를 사용할 수 있게 되었습니다.</p>
+                        <div class="quote">
+                            "Harin's writing has improved significantly, with almost no grammar mistakes! The only minor issue was using -ing where a base verb was needed, but overall, her sentence structure and accuracy were excellent. Great progress today!"
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">문법 정확성 향상 영역</div>
+                <ul>
+                    <li><span class="highlight">주어-동사 일치:</span> 'she has'와 'she have'의 차이를 이해하고 올바르게 사용하는 능력이 향상되었습니다.</li>
+                    <li><span class="highlight">시제 일관성:</span> 이야기를 설명할 때 일관된 시제를 유지하는 능력이 발전했습니다.</li>
+                    <li><span class="highlight">단어 선택:</span> 'chew'와 'knew'와 같이 유사하지만 다른 의미를 가진 단어를 구분하는 능력이 향상되었습니다.</li>
+                    <li><span class="highlight">문장 구조:</span> 더 복잡하고 정확한 문장 구조를 사용하는 능력이 발전했습니다.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Integration of Skills -->
+        <div class="card">
+            <h3><span class="icon icon-growth"></span> 통합적 발전: 기술의 융합</h3>
+            
+            <p>Harin의 영어 능력 발전에서 가장 주목할 만한 점은 <span class="highlight">세 가지 핵심 영역(인물 관계 분석, 문맥 기반 추론, 문법 정확성)의 통합적 발전</span>입니다. 이 세 영역은 서로 긴밀히 연결되어 상호 강화되는 관계에 있습니다.</p>
+
+            <div class="timeline timeline-green">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">통합적 발전 사례 1: Greg와 Gramma의 관계 분석</div>
+                        <p>Harin은 <span class="highlight">문맥 기반 추론</span>을 활용하여 Greg와 Gramma의 비밀 미트볼 레시피를 둘러싼 가족 역학 관계를 파악했습니다. 이 과정에서 <span class="highlight">인물 관계 분석</span> 능력을 발휘하여 가족 내 권력 구조와 전통의 의미를 이해했으며, <span class="highlight">향상된 문법 정확성</span>을 통해 이를 명확하게 표현했습니다.</p>
+                        <div class="quote">
+                            "Harin discussed Greg's relationship with his Gramma, noting how her role as the family matriarch and keeper of the secret meatball recipe influenced family dynamics. She explored how Gramma's actions impacted Greg's understanding of family traditions and secrets."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">통합적 발전 사례 2: The 13-Story Treehouse 분석</div>
+                        <p>이 책을 분석할 때, Harin은 <span class="highlight">문맥 기반 추론</span>을 통해 책의 유머와 상상력이 풍부한 요소를 파악했습니다. 또한 <span class="highlight">인물 관계 분석</span>을 통해 등장인물들의 경쟁 관계(예: 그림 대회)와 협력 관계를 이해했으며, <span class="highlight">향상된 문법 정확성</span>으로 이를 체계적으로 설명했습니다.</p>
+                        <div class="quote">
+                            "하린 was asked a few questions about the chapter where Andy and Terry had a drawing competition. The student answered well, explaining that the first drawing was of a knife and the second was of a banana. 하린 explained how Andy was a terrible artist and how Terry's drawings were always better. The student showed great understanding of the book and the characters' traits."
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">통합적 발전의 의미</div>
+                <p>이러한 통합적 발전은 Harin이 단순히 영어 언어 능력을 넘어, <span class="highlight">비판적 사고와 문학적 이해 능력</span>까지 함께 발전시키고 있음을 보여줍니다. 특히 인물 관계 분석과 문맥 기반 추론 능력은 높은 수준의 독해력과 분석력을 요구하는 능력으로, Harin의 지적 성장을 반영합니다.</p>
+            </div>
+        </div>
+        
+        <!-- Future Outlook -->
+        <div class="card">
+            <h3><span class="icon icon-future"></span> 향후 전망 및 추천사항</h3>
+            
+            <div class="factor-box">
+                <div class="factor-title">인물 관계 분석 심화를 위한 추천사항</div>
+                <ul>
+                    <li>복잡한 인물 관계가 등장하는 <span class="highlight">다양한 장르의 문학 작품</span> 접하기</li>
+                    <li>같은 인물이 다른 상황에서 보이는 <span class="highlight">행동 패턴 비교</span>하기</li>
+                    <li>인물 관계도를 그려보며 <span class="highlight">관계의 변화와 발전</span>을 시각화하기</li>
+                </ul>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">문맥 기반 추론 강화를 위한 추천사항</div>
+                <ul>
+                    <li>이야기의 <span class="highlight">암시된 의미와 상징</span>에 주목하기</li>
+                    <li>작가의 <span class="highlight">문체와 어조가 내용에 미치는 영향</span> 분석하기</li>
+                    <li>이야기의 <span class="highlight">역사적, 사회적 맥락</span>을 고려하여 해석하기</li>
+                </ul>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">문법 정확성 향상을 위한 추천사항</div>
+                <ul>
+                    <li>복잡한 <span class="highlight">문장 구조를 의식적으로 활용</span>하는 연습하기</li>
+                    <li>다양한 <span class="highlight">시제와 조건문</span>을 사용하여 글쓰기 연습하기</li>
+                    <li>자신의 글을 <span class="highlight">비판적으로 검토</span>하는 습관 기르기</li>
+                </ul>
+            </div>
+            
+            <p>Harin은 이미 뛰어난 분석력과 이해력을 갖추고 있으며, 앞으로는 <span class="highlight">더 복잡한 문학 작품에 도전하고, 다양한 관점에서 이야기를 해석하며, 자신의 분석을 더 정교하게 표현</span>하는 방향으로 발전해 나갈 수 있을 것입니다. 특히, 문학 작품의 심층적 주제와 사회적 함의를 탐구하는 능력을 더욱 발전시키면, 지금까지의 성장을 바탕으로 더 높은 수준의 영어 능력을 달성할 수 있을 것입니다.</p>
+        </div>
+        
+        <!-- Conclusion -->
+        <div class="card">
+            <h3>결론</h3>
+            
+            <div class="factor-box">
+                <p>Harin(하린)의 영어 학습 여정은 <span class="highlight">단순한 언어 실력을 넘어 비판적 사고력, 인물 관계 분석 능력, 그리고 문맥 기반 추론 능력이 통합적으로 발전</span>한 성공적인 사례입니다. 특히 등장인물들 간의 관계와 동기를 깊이 있게 분석하는 능력, 이야기의 맥락을 통해 심층적 의미를 추론하는 능력, 그리고 문법적 정확성이 조화롭게 발전했습니다.</p>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">인물 관계 분석 능력</span> - 등장인물 간의 복잡한 관계와 역학 구조 파악</div>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">문맥 기반 추론 능력</span> - 이야기의 맥락을 통해 심층적 의미와 주제 파악</div>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">문법 정확성</span> - 점진적으로 향상된 문법적 정확성과 표현력</div>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">통합적 발전</span> - 세 가지 핵심 영역의 조화로운 성장</div>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">비판적 사고력</span> - 이야기의 다층적 의미와 주제 분석</div>
+            </div>
+            
+            <p style="margin-top: 20px;">Harin의 <span class="highlight">깊이 있는 분석력과 추론 능력</span>은 앞으로의 언어 발전뿐만 아니라, 학문적 성장에도 큰 밑거름이 될 것입니다. 계속해서 다양한 문학 작품을 접하고 심층적 분석에 도전한다면, 언어 능력을 넘어 진정한 비판적 사고자로 성장할 것입니다.</p>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>이노블스 영어도서관</p>
+        </div>
+    </footer>
+</body>
+</html>
