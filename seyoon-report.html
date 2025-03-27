@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김세윤 영어 발전 보고서</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #e5863e;
+            --primary-light: #f7d4b5;
+            --primary-dark: #d06b25;
+            --secondary: #475569;
+            --accent: #f8fafc;
+            --high: #ef4444;
+            --medium: #f59e0b;
+            --low: #10b981;
+            --text-dark: #334155;
+            --text-light: #f8fafc;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --radius: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--accent);
+            line-height: 1.4;
+            font-size: 14px;
+            padding-bottom: 60px;
+        }
+        
+        /* Typography */
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #000 0%, #6f6e6e 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        
+        h2 {
+            font-size: 16px;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        
+        h3 {
+            font-size: 18px;
+            color: var(--primary-dark);
+            font-weight: 700;
+            margin: 24px 0 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h3 i {
+            margin-right: 8px;
+        }
+        
+        p {
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        
+        /* Layout Components */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        
+        .header {
+            padding: 20px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .logo-date {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .two-column {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .column-60 {
+            flex: 1 1 60%;
+            min-width: 250px;
+        }
+        
+        .column-40 {
+            flex: 1 1 40%;
+            min-width: 200px;
+        }
+        
+        /* Component Styles */
+        .executive-summary {
+            background: linear-gradient(135deg, var(--primary-light) 0%, white 100%);
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        
+        .kpi-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .kpi-title {
+            font-size: 14px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .kpi-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .kpi-value {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .kpi-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .highlight {
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+        
+        .factor-box {
+            background-color: var(--primary-light);
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .factor-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+            font-size: 15px;
+        }
+        
+        .progress-item {
+            margin-bottom: 16px;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+        
+        .progress-title {
+            font-weight: 600;
+        }
+        
+        .progress-value {
+            font-weight: 700;
+        }
+        
+        .progress-value.high {
+            color: var(--high);
+        }
+        
+        .progress-value.medium {
+            color: var(--medium);
+        }
+        
+        .progress-value.low {
+            color: var(--low);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e9e9e9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .progress-fill.high {
+            background-color: var(--high);
+        }
+        
+        .progress-fill.medium {
+            background-color: var(--medium);
+        }
+        
+        .progress-fill.low {
+            background-color: var(--low);
+        }
+        
+        .progress-fill.primary {
+            background-color: var(--primary);
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--primary-light);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding-left: 40px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 7px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            border: 3px solid white;
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .timeline-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+        
+        .book-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .book-item {
+            background-color: var(--primary-light);
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .book-level {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+        
+        .quote {
+            border-left: 3px solid var(--primary);
+            padding-left: 12px;
+            margin: 12px 0;
+            font-style: italic;
+            font-size: 13px;
+            color: var(--secondary);
+        }
+        
+        .chart-container {
+            height: 200px;
+            margin: 20px 0;
+        }
+        
+        .book-progress-chart {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .chart-bar {
+            display: flex;
+            align-items: flex-end;
+            height: 160px;
+            gap: 10px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .chart-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        .chart-bar-fill {
+            width: 30px;
+            background-color: var(--primary);
+            border-radius: 4px 4px 0 0;
+        }
+        
+        .chart-label {
+            position: absolute;
+            bottom: -20px;
+            font-size: 10px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .chart-value {
+            position: absolute;
+            top: -20px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+        
+        .badge-primary {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+        }
+        
+        .badge-high {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--high);
+        }
+        
+        .badge-medium {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--medium);
+        }
+        
+        .badge-low {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--low);
+        }
+        
+        .checklist-item {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        
+        .checklist-icon {
+            color: var(--primary);
+            margin-right: 8px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 20px 0;
+            margin-top: 40px;
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        .footer img {
+            height: 30px;
+            margin-bottom: 12px;
+        }
+        
+        /* Icons */
+        .icon {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background-color: currentColor;
+            margin-right: 6px;
+            vertical-align: middle;
+            -webkit-mask-size: cover;
+            mask-size: cover;
+        }
+        
+        .icon-chart {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 12h4v8H3v-8zm7-8h4v16h-4V4zm7 4h4v12h-4V8z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 12h4v8H3v-8zm7-8h4v16h-4V4zm7 4h4v12h-4V8z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-book {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21a9 9 0 0 1-9-9 9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9zm0-18C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm1 14h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21a9 9 0 0 1-9-9 9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9zm0-18C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm1 14h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-speech {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z'/%3E%3Cpath d='M7 9h10v2H7zM7 6h10v2H7zM7 12h7v2H7z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z'/%3E%3Cpath d='M7 9h10v2H7zM7 6h10v2H7zM7 12h7v2H7z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-writing {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-growth {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-future {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-check {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+            width: 18px;
+            height: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <h1>김세윤 (Seyoon)</h1>
+                    <h2>영어 발전 보고서</h2>
+                </div>
+                <div class="won-jang-signature">이노블스 강남점 KJ Lee 원장
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Executive Summary -->
+        <div class="executive-summary">
+            <p>Seyoon(세윤)은 2025년 1월부터 3월까지 <span class="highlight">꾸준한 영어 발전</span>을 보여주었습니다. 특히 <span class="highlight">이야기 이해력과 구조화된 표현 능력</span>이 크게 향상되었으며, 피드백을 적극적으로 받아들이고 적용하는 모습이 인상적입니다.</p>
+        </div>
+        
+        <!-- KPI Card -->
+        <div class="kpi-card">
+            <div class="kpi-title">주요 성과 지표 (KPIs)</div>
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <div class="kpi-value">B+</div>
+                    <div class="kpi-label">독해력</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">B</div>
+                    <div class="kpi-label">말하기 능력</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">B</div>
+                    <div class="kpi-label">작문 능력</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">A-</div>
+                    <div class="kpi-label">피드백 수용력</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Overview Card -->
+        <div class="card">
+            <h3><span class="icon icon-chart"></span> 학습 개요</h3>
+            
+            <div class="two-column">
+                <div class="column-60">
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-title">이야기 이해력</span>
+                            <span class="progress-value medium">우수함</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill medium" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-title">표현 유창성</span>
+                            <span class="progress-value medium">발전 중</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill medium" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-title">문법 정확성</span>
+                            <span class="progress-value medium">발전 중</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill medium" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-title">학습 의지</span>
+                            <span class="progress-value high">매우 우수함</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill high" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column-40">
+                    <div class="factor-box">
+                        <div class="factor-title">핵심 역량</div>
+                        <div>
+                            <div class="badge badge-primary">이야기 이해력</div>
+                            <div class="badge badge-medium">구조화된 표현</div>
+                            <div class="badge badge-high">피드백 수용력</div>
+                            <div class="badge badge-low">질문 능력</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">주목할 점</div>
+                <p>Seyoon은 <span class="highlight">모르는 것을 질문하고 명확히 하려는 태도</span>가 매우 인상적입니다. 이는 그의 이해력을 크게 향상시키는 요소이며, 특히 복잡한 개념을 파악할 때 효과적인 학습 전략을 보여줍니다.</p>
+            </div>
+        </div>
+        
+        <!-- Reading Journey -->
+        <div class="card">
+            <h3><span class="icon icon-book"></span> 독서 여정</h3>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">초기 단계 (1월)</div>
+                        <div class="book-list">
+                            <div class="book-item">
+                                <div class="book-level">초</div>
+                                Super Rabbit Boy
+                            </div>
+                            <div class="book-item">
+                                <div class="book-level">초</div>
+                                Game Over, Super Rabbit Boy!
+                            </div>
+                        </div>
+                        <p>초기에 Seyoon은 이야기의 <span class="highlight">기본 플롯과 캐릭터</span>에 대한 이해를 보여주었습니다. 주로 짧은 대답으로 응답했지만, 내용을 정확하게 파악하는 모습을 보였습니다.</p>
+                        <div class="quote">
+                            "Seyoon shared his excitement about the Super Rabbit Boy series, describing the challenges in the book and why they were interesting. He used simple yet effective sentences to explain the plot, and teacher guidance helped him expand his vocabulary."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">중간 단계 (2월)</div>
+                        <div class="book-list">
+                            <div class="book-item">
+                                <div class="book-level">초</div>
+                                The Enormous Crocodile
+                            </div>
+                            <div class="book-item">
+                                <div class="book-level">초</div>
+                                Hotdog! Party Time!
+                            </div>
+                        </div>
+                        <p>중간 단계에서는 <span class="highlight">이야기의 구조를 더 잘 파악</span>하고, 일련의 사건을 순서대로 설명할 수 있게 되었습니다. 특히 플롯의 인과관계를 파악하는 능력이 향상되었습니다.</p>
+                        <div class="quote">
+                            "Seyoon organized the events of Hotdog! Party Time! in chronological order, clearly outlining what happened from the beginning to the end. He described how Hotdog, Lizzie, and Kev prepared for Zoe's party, faced challenges, and found a way to make the day special."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">현재 단계 (3월)</div>
+                        <div class="book-list">
+                            <div class="book-item">
+                                <div class="book-level">초</div>
+                                Mr. Putter
+                            </div>
+                            <div class="book-item">
+                                <div class="book-level">초</div>
+                                Rocky & Judy
+                            </div>
+                        </div>
+                        <p>현재 Seyoon은 <span class="highlight">인물의 감정과 동기를 더 깊이 이해</span>하는 모습을 보여주고 있습니다. 또한 6가지 기본 질문(누가, 무엇을, 언제, 어디서, 왜, 어떻게)을 활용하여 이야기를 체계적으로 분석하는 능력이 발전했습니다.</p>
+                        <div class="quote">
+                            "Seyoon answered all three questions, explaining why Mr. Putter felt too old for his birthday, how Mrs. Teaberry surprised him, and what his change of heart revealed about his character. His responses were clear, and with some guidance, he expressed his ideas more naturally."
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">독서 성과 분석</div>
+                <p>Seyoon은 초기에 단순한 줄거리 이해에서 시작하여 점차 <span class="highlight">인물의 감정과 동기를 파악</span>하는 더 깊은 이해로 발전했습니다. 특히 <span class="highlight">구조화된 분석 방법</span>(시간 순서 정리, 6가지 기본 질문 등)을 활용하는 능력이 향상되어 더 체계적으로 이야기를 이해하고 표현할 수 있게 되었습니다.</p>
+            </div>
+        </div>
+        
+        <!-- Speaking Development -->
+        <div class="card">
+            <h3><span class="icon icon-speech"></span> 말하기 능력 발전</h3>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">초기 단계</div>
+                        <p>초기에 Seyoon은 <span class="highlight">단순한 질문에 간결하게 대답</span>할 수 있었지만, 복잡한 생각을 표현하는 데 어려움을 느꼈습니다. 특히 창의적인 질문이나 추상적인 개념을 다루는 질문에 대답하기 어려워했습니다.</p>
+                        <div class="quote">
+                            "Seyoon struggled a bit with speaking but made an effort to respond when the questions were explained thoroughly. He took time to think and answered, even when it was difficult. When he didn't know something, he asked for clarification, showing a willingness to learn."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">중간 단계</div>
+                        <p>점차 <span class="highlight">더 자세한 설명과 풍부한 표현</span>을 사용할 수 있게 되었습니다. 특히 익숙한 주제에 대해서는 자신감 있게 말할 수 있었고, 교사의 도움으로 더 자연스러운 표현을 배우기 시작했습니다.</p>
+                        <div class="quote">
+                            "Seyoon answered the questions by explaining how Sunny's discovery of cheat codes changed Animal Land, the challenges caused by glitches, and Super Rabbit Boy's plan to restore order. We worked on expanding his answers with more details. He improved in explaining events more clearly and confidently."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">현재 단계</div>
+                        <p>현재 Seyoon은 <span class="highlight">다양한 방식으로 생각을 표현</span>하는 능력이 발전했습니다. 예를 들어, 부정문을 여러 방식으로 표현할 수 있게 되었고("Kev has no money"와 "Kev doesn't have money"), 인물의 감정과 동기에 대해 더 심층적으로 설명할 수 있게 되었습니다.</p>
+                        <div class="quote">
+                            "Seyoon explained why Rocky chose Judy as his assistant and described the challenges they encountered. He also discussed how Judy's actions affected their friendship and the lessons they learned. He needed some help expressing abstract ideas but improved with support."
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">주요 향상 영역</div>
+                <ul>
+                    <li><span class="highlight">표현의 다양성:</span> 같은 내용을 여러 방식으로 표현하는 능력이 향상되었습니다.</li>
+                    <li><span class="highlight">설명의 구체성:</span> 단순 대답에서 더 구체적이고 자세한 설명으로 발전했습니다.</li>
+                    <li><span class="highlight">추상적 개념 표현:</span> 감정, 동기, 교훈 등 추상적인 개념을 설명하는 능력이 향상되었습니다.</li>
+                    <li><span class="highlight">자신감:</span> 익숙한 주제에 대해 더 자신감 있게 의견을 표현할 수 있게 되었습니다.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Writing Development -->
+        <div class="card">
+            <h3><span class="icon icon-writing"></span> 작문 능력 발전</h3>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">초기 단계</div>
+                        <p>초기에는 <span class="highlight">간단한 문장으로 기본적인 생각을 표현</span>했습니다. 철자 오류가 있었고, 문장 구조가 단순했습니다.</p>
+                        <div class="quote">
+                            "Seyoon wrote simple sentences, with most errors focused on spelling. However, it was great to see him trying to express what he heard in writing. Encouraging him to check his spelling carefully and expand his sentences will help him improve."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">중간 단계</div>
+                        <p>중간 단계에서는 <span class="highlight">더 구조화된 작문</span>을 할 수 있게 되었습니다. 시간 순서대로 사건을 정리하고, 인과관계를 표현하는 능력이 향상되었습니다. 여전히 문법적 오류가 있었지만, 내용의 논리적 흐름이 개선되었습니다.</p>
+                        <div class="quote">
+                            "Seyoon organized the events of Hotdog! Party Time! in chronological order, clearly outlining what happened from the beginning to the end. He described how Hotdog, Lizzie, and Kev prepared for Zoe's party, faced challenges, and found a way to make the day special. With some guidance, he improved transitions between events for smoother storytelling."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">현재 단계</div>
+                        <p>현재는 <span class="highlight">정확한 문법과 어휘 사용에 더 주의</span>를 기울이게 되었습니다. 특히 비교급 형태, 평균 개념, 'be' 동사의 변형 등 더 복잡한 문법 요소를 학습하고 있습니다. 또한 글의 구조를 더 체계적으로 조직하는 능력이 발전했습니다.</p>
+                        <div class="quote">
+                            "Seyoon summarized the story using the six key questions, clearly explaining who Mr. Putter is, what happened on his birthday, and how Mrs. Teaberry surprised him. The summary was concise and well-structured."
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">주요 향상 영역</div>
+                <ul>
+                    <li><span class="highlight">구조화된 작문:</span> 시간 순서, 6가지 기본 질문 등을 활용하여 더 체계적으로 글을 구성할 수 있게 되었습니다.</li>
+                    <li><span class="highlight">문법적 정확성:</span> 비교급, 단수/복수 구분, 적절한 동사 형태 등에 더 주의를 기울이게 되었습니다.</li>
+                    <li><span class="highlight">세부 사항 표현:</span> 단순한 사실을 넘어 더 구체적인 세부 사항을 포함할 수 있게 되었습니다.</li>
+                    <li><span class="highlight">정확성 추구:</span> 단어 선택과 철자에 대해 더 꼼꼼하게 확인하는 태도가 발전했습니다.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Key Growth Areas -->
+        <div class="card">
+            <h3><span class="icon icon-growth"></span> 주요 성장 영역</h3>
+            
+            <div class="two-column">
+                <div class="column-60">
+                    <div class="factor-title">1. 이야기 구조화 능력</div>
+                    <p>Seyoon은 <span class="highlight">이야기를 순서대로 정리하고 구조화</span>하는 능력이 크게 향상되었습니다. 초기에는 단순히 기억나는 대로 내용을 나열했지만, 점차 시간 순서나 6가지 기본 질문을 활용하여 체계적으로 정리할 수 있게 되었습니다.</p>
+                    
+                    <div class="factor-title">2. 질문을 통한 명확화 능력</div>
+                    <p>Seyoon은 <span class="highlight">자신이 이해하지 못한 부분을 질문하고 명확히 하는 능력</span>이 두드러집니다. 이는 그의 학습 태도와 이해도를 높이는 중요한 요소입니다.</p>
+                </div>
+                
+                <div class="column-40">
+                    <div class="factor-title">3. 피드백 수용 및 적용</div>
+                    <p>교사의 피드백을 <span class="highlight">적극적으로 받아들이고 즉시 적용</span>하려는 태도가 인상적입니다. 특히 작문에서 단어 사용이나 문법적 오류에 대한 피드백을 즉시 이해하고 수정하는 모습을 보여주었습니다.</p>
+                    
+                    <div class="factor-title">4. 복잡한 개념 이해력</div>
+                    <p>처음에는 어려워했던 <span class="highlight">추상적 개념이나 복잡한 설명</span>에 대한 이해력이 점진적으로 향상되고 있습니다. 특히 인물의 감정이나 동기와 같은 추상적인 요소를 파악하는 능력이 발전했습니다.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Future Outlook -->
+        <div class="card">
+            <h3><span class="icon icon-future"></span> 향후 전망 및 추천사항</h3>
+            
+            <div class="factor-box">
+                <div class="factor-title">독서 및 이해력 발전</div>
+                <ul>
+                    <li><span class="highlight">약간 더 높은 수준의 책으로 도전</span>하여 어휘력과 이해력을 확장하기</li>
+                    <li>다양한 장르(과학, 역사, 판타지 등)의 책을 접하여 다양한 주제와 어휘 경험하기</li>
+                    <li>읽은 내용을 자신의 생각이나 경험과 연결해보는 연습하기</li>
+                </ul>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">말하기 능력 향상</div>
+                <ul>
+                    <li><span class="highlight">복잡한 생각을 더 작은 단위로 나누어 표현</span>하는 연습하기</li>
+                    <li>같은 내용을 다양한 방식으로 표현하는 연습 계속하기</li>
+                    <li>인물의 감정이나 동기와 같은 추상적 개념에 대해 토론하는 기회 늘리기</li>
+                </ul>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">작문 능력 향상</div>
+                <ul>
+                    <li>문장 구조의 <span class="highlight">다양성 확장</span>하기 (단문과 복문의 적절한 조합)</li>
+                    <li>시간 표현(시제)의 일관성에 주의하기</li>
+                    <li>문장 간 자연스러운 연결을 위한 전환어(transition words) 활용하기</li>
+                </ul>
+            </div>
+            
+            <p>Seyoon은 이미 훌륭한 학습 태도와 이해력을 갖추고 있습니다. 앞으로는 <span class="highlight">자신의 생각과 의견을 더 자유롭게 표현</span>하는 데 집중한다면, 영어 능력이 더욱 균형 있게 발전할 것입니다. 특히 질문하는 능력이 뛰어나므로, 이를 활용하여 더 깊이 있는 대화와 토론에 참여하도록 격려하면 좋을 것입니다.</p>
+        </div>
+        
+        <!-- Conclusion -->
+        <div class="card">
+            <h3>결론</h3>
+            
+            <div class="factor-box">
+                <p>Seyoon(세윤)의 영어 학습 여정은 <span class="highlight">체계적인 접근과 꾸준한 노력</span>의 좋은 사례입니다. 특히 피드백을 수용하고 적용하는 능력, 이해하지 못한 부분을 질문하는 적극성, 그리고 구조화된 방식으로 생각을 표현하는 능력이 크게 향상되었습니다.</p>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">이야기 구조화 능력</span> - 시간 순서, 6가지 기본 질문 등을 활용한 체계적 정리</div>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">표현의 다양성</span> - 같은 내용을 여러 방식으로 표현하는 능력 향상</div>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">문법적 정확성</span> - 비교급, 단수/복수, 동사 형태 등에 대한 이해 향상</div>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">피드백 수용 및 적용</span> - 교사의 지도를 즉시 이해하고 적용하는 능력</div>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">질문을 통한 학습</span> - 이해하지 못한 부분을 질문하여 명확히 하는 적극성</div>
+            </div>
+            
+            <p style="margin-top: 20px;">Seyoon의 <span class="highlight">적극적인 학습 태도와 체계적인 접근 방식</span>은 앞으로의 영어 학습에 큰 자산이 될 것입니다. 계속해서 자신감을 키우고 더 복잡한 표현에 도전한다면, 영어 능력이 더욱 균형 있게 발전할 것입니다.</p>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>이노블스 영어도서관</p>
+        </div>
+    </footer>
+</body>
+</html>
