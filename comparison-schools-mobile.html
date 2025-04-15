@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대전과학고와 서울과학고 비교 분석 보고서</title>
+    <style>
+        :root {
+            --primary: #2563EB;
+            --daejeon: #2563EB;
+            --seoul: #7c3aed;
+            --primary-dark: #1e40af;
+            --secondary: #475569;
+            --accent-light: #f8fafc;
+            --high: #ef4444;
+            --medium: #f59e0b;
+            --low: #10b981;
+            --text-dark: #334155;
+            --text-light: #94a3b8;
+            --border-light: #e2e8f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+        }
+        
+        body {
+            background-color: var(--accent-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--daejeon), var(--seoul));
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-title h1 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .header-title p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        nav {
+            position: relative;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        
+        nav ul li {
+            margin-left: 15px;
+            margin-bottom: 5px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+        }
+        
+        nav ul li a:hover {
+            opacity: 1;
+        }
+        
+        .hero {
+            background-color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 28px;
+            background: linear-gradient(to right, var(--daejeon), var(--seoul));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 16px;
+            color: var(--secondary);
+            margin-bottom: 25px;
+        }
+        
+        .school-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .school-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .daejeon-logo {
+            background-color: var(--daejeon);
+        }
+        
+        .seoul-logo {
+            background-color: var(--seoul);
+        }
+        
+        .school-name {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .school-desc {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-title h2 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--daejeon), var(--seoul));
+        }
+        
+        .section-title p {
+            font-size: 14px;
+            color: var(--secondary);
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card-header {
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 15px;
+        }
+        
+        .card-header h3 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .card-header p {
+            font-size: 14px;
+            color: var(--secondary);
+        }
+        
+        .card-body h4 {
+            font-size: 16px;
+            color: var(--primary-dark);
+            margin: 20px 0 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .card-body p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+        
+        .highlight-box {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .highlight-primary {
+            background-color: rgba(37, 99, 235, 0.1);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .highlight-success {
+            background-color: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--low);
+        }
+        
+        .highlight-warning {
+            background-color: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--medium);
+        }
+        
+        .highlight-danger {
+            background-color: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--high);
+        }
+        
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        @media (min-width: 768px) {
+            .two-columns {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .menu-toggle {
+                display: none;
+            }
+            
+            nav ul {
+                display: flex !important;
+            }
+            
+            .header-title h1 {
+                font-size: 24px;
+            }
+            
+            .header-title p {
+                font-size: 14px;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .card {
+                padding: 30px;
+            }
+            
+            .card-header h3 {
+                font-size: 22px;
+            }
+            
+            .card-body h4 {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                flex-direction: column;
+                background: linear-gradient(to bottom, var(--daejeon), var(--seoul));
+                width: 200px;
+                padding: 15px;
+                border-radius: 0 0 8px 8px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 8px 0;
+                width: 100%;
+                text-align: left;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 5px 0;
+            }
+            
+            .school-logos {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+        
+        .strong-text {
+            font-weight: bold;
+        }
+        
+        .text-primary {
+            color: var(--primary);
+        }
+        
+        .text-daejeon {
+            color: var(--daejeon);
+        }
+        
+        .text-seoul {
+            color: var(--seoul);
+        }
+        
+        .text-success {
+            color: var(--low);
+        }
+        
+        .text-warning {
+            color: var(--medium);
+        }
+        
+        .text-danger {
+            color: var(--high);
+        }
+        
+        ul, ol {
+            margin: 12px 0;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .badge-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .badge-daejeon {
+            background-color: var(--daejeon);
+            color: white;
+        }
+        
+        .badge-seoul {
+            background-color: var(--seoul);
+            color: white;
+        }
+        
+        .badge-success {
+            background-color: var(--low);
+            color: white;
+        }
+        
+        .badge-warning {
+            background-color: var(--medium);
+            color: white;
+        }
+        
+        .badge-danger {
+            background-color: var(--high);
+            color: white;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 15px 0;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+        
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 14px;
+        }
+        
+        th {
+            background-color: #f1f5f9;
+            font-weight: bold;
+            color: var(--primary-dark);
+            position: sticky;
+            top: 0;
+        }
+        
+        tr:hover {
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+        
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 22px;
+            height: 22px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        
+        .comparison-container {
+            display: flex;
+            flex-direction: column;
+            margin: 20px 0;
+            gap: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .comparison-container {
+                flex-direction: row;
+                gap: 15px;
+            }
+        }
+        
+        .comparison-column {
+            flex: 1;
+        }
+        
+        .comparison-title {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 0;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+            color: white;
+        }
+        
+        .daejeon-title {
+            background-color: var(--daejeon);
+        }
+        
+        .seoul-title {
+            background-color: var(--seoul);
+        }
+        
+        .comparison-content {
+            background-color: white;
+            border-radius: 0 0 8px 8px;
+            padding: 15px;
+            height: 100%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .comparison-box {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .comparison-box h4 {
+            font-size: 16px;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            min-width: 600px;
+        }
+        
+        .comparison-table th {
+            background-color: #f1f5f9;
+            font-weight: bold;
+            padding: 10px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+        }
+        
+        .comparison-table td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 14px;
+        }
+        
+        .daejeon-col {
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+        
+        .seoul-col {
+            background-color: rgba(124, 58, 237, 0.05);
+        }
+        
+        .feature-list {
+            margin: 0;
+            padding-left: 18px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .feature-box {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--primary-dark);
+            font-size: 15px;
+        }
+        
+        .feature-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+        
+        .pros-cons {
+            display: flex;
+            flex-direction: column;
+            margin: 15px 0;
+            gap: 15px;
+        }
+        
+        @media (min-width: 768px) {
+            .pros-cons {
+                flex-direction: row;
+            }
+        }
+        
+        .pros-cons-col {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+        }
+        
+        .pros-col {
+            background-color: rgba(16, 185, 129, 0.1);
+        }
+        
+        .cons-col {
+            background-color: rgba(239, 68, 68, 0.1);
+        }
+        
+        .pros-cons-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-align: center;
+            font-size: 15px;
+        }
+        
+        .pros-title {
+            color: var(--low);
+        }
+        
+        .cons-title {
+            color: var(--high);
+        }
+        
+        .pros-cons-col ul {
+            padding-left: 18px;
+            margin: 8px 0;
+        }
+        
+        .pros-cons-col li {
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                text-align: left;
+            }
+        }
+        
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-left {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+        
+        .footer-logo {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-dark);
+            font-size: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-logo {
+                margin-right: 15px;
+                margin-bottom: 0;
+            }
+        }
+        
+        .footer-text h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .footer-text p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .footer-right {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+            font-size: 18px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Factor box */
+        .factor-box {
+            background-color: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .factor-box h4 {
+            font-size: 16px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .factor-items {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        @media (min-width: 480px) {
+            .factor-items {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .factor-items {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+            
+            .factor-box {
+                padding: 20px;
+            }
+            
+            .factor-box h4 {
+                font-size: 18px;
+            }
+        }
+        
+        .factor-item {
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            background-color: rgba(37, 99, 235, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .factor-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .factor-icon {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        .factor-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--primary-dark);
+            font-size: 15px;
+        }
+        
+        .factor-description {
+            font-size: 13px;
+            color: var(--secondary);
+        }
+        
+        /* 테이블 스와이프 힌트 표시 */
+        .table-scroll-hint {
+            display: none;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 12px;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+        
+        @media (max-width: 767px) {
+            .table-scroll-hint {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-title">
+                    <h1>대전과학고와 서울과학고 비교 분석</h1>
+                    <p>국내 최고 영재학교 심층 분석</p>
+                </div>
+                <nav>
+                    <button class="menu-toggle" id="menuToggle">☰</button>
+                    <ul id="navMenu">
+                        <li><a href="#overview">개요</a></li>
+                        <li><a href="#basic-comparison">기본현황</a></li>
+                        <li><a href="#philosophy">교육철학</a></li>
+                        <li><a href="#curriculum">교육과정</a></li>
+                        <li><a href="#research">연구활동</a></li>
+                        <li><a href="#programs">특색프로그램</a></li>
+                        <li><a href="#admission">입학전형</a></li>
+                        <li><a href="#analysis">심층분석</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="overview">
+        <div class="container">
+            <div class="hero-content">
+                <h2>국내 최고 과학영재교육의 양대 산맥</h2>
+                <p>미래 과학기술 인재 양성을 위한 두 영재학교의 비교 분석</p>
+                
+                <div class="school-logos">
+                    <div class="school-logo">
+                        <div class="logo-circle daejeon-logo">DSHS</div>
+                        <div class="school-name">대전과학고등학교</div>
+                        <div class="school-desc">탐이일신(探而日新)의 정신</div>
+                    </div>
+                    <div class="school-logo">
+                        <div class="logo-circle seoul-logo">SSHS</div>
+                        <div class="school-name">서울과학고등학교</div>
+                        <div class="school-desc">예지(睿智)와 의행(義行)의 교훈</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Basic Comparison Section -->
+        <section id="basic-comparison">
+            <div class="section-title">
+                <h2>1. 기본 현황 비교</h2>
+                <p>두 학교의 위치, 규모, 학생 구성 등 기본 정보</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="icon">📊</span> 학교 기본 정보 비교</h3>
+                    <p>규모, 위치, 학급 구성 등 핵심 현황 비교</p>
+                </div>
+                
+                <div class="card-body">
+                    <div class="table-scroll-hint">← 좌우로 스와이프하여 더 보기 →</div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>구분</th>
+                                    <th>대전과학고</th>
+                                    <th>서울과학고</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>위치</strong></td>
+                                    <td>대전광역시</td>
+                                    <td>서울특별시 종로구(성북구 경계)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>설립 연도</strong></td>
+                                    <td>미언급</td>
+                                    <td>1989년 개교, 2009년 영재학교 전환</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>학생 규모</strong></td>
+                                    <td>총 99명 정원(90+9명), 학년당 약 95명</td>
+                                    <td>총 379명, 학년당 약 125명</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>학급 구성</strong></td>
+                                    <td>미언급</td>
+                                    <td>학년당 8학급, 학급당 15.8명</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>교원 규모</strong></td>
+                                    <td>미언급</td>
+                                    <td>교과목별 충분한 교원 확보(인문 교과 4명)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="highlight-box highlight-primary">
+                        <h4 style="margin-top: 0;">핵심 차이점</h4>
+                        <p>서울과학고(379명)는 대전과학고(약 280명)보다 <strong>약 100명 이상 많은 학생</strong>을 수용하고 있습니다. 이러한 규모 차이는 교육과정 운영 방식과 자원 활용에 영향을 미치며, 서울과학고는 더 다양한 선택과목과 세분화된 전문교육이 가능한 반면, 대전과학고는 더 밀착된 지도와 지역 연계 활동에 강점을 보입니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Philosophy Section -->
+        <section id="philosophy">
+            <div class="section-title">
+                <h2>2. 교육 철학과 인재상 비교</h2>
+                <p>두 학교의 교육 이념, 비전, 추구하는 인재상 비교</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="icon">🎯</span> 교육 철학과 인재상</h3>
+                    <p>미래 과학기술 인재 양성을 위한 각 학교의 비전과 방향성</p>
+                </div>
+                
+                <div class="card-body">
+                    <div class="comparison-container">
+                        <div class="comparison-column">
+                            <div class="comparison-title daejeon-title">대전과학고</div>
+                            <div class="comparison-content">
+                                <h4><i class="icon">🔍</i> 교육 철학: "탐이일신(探而日新)"</h4>
+                                <ul>
+                                    <li><strong>탐이(探而)</strong>: 호기심 바탕으로 스스로 의문점을 탐구하는 과학인의 자세</li>
+                                    <li><strong>일신(日新)</strong>: 끊임없이 변화를 추구하는 도전인의 자세</li>
+                                </ul>
+                                
+                                <h4><i class="icon">🚀</i> 비전</h4>
+                                <p>스스로 탐구하여 세상을 더 이롭게 하는 창의적 과학 인재 양성</p>
+                                
+                                <h4><i class="icon">📌</i> 추진 중점: 'GREAT'</h4>
+                                <ul>
+                                    <li><strong>G</strong>reat Curriculum: 개인맞춤형 교육과정</li>
+                                    <li><strong>R</strong>enovation Competency: 창의혁신형 인재</li>
+                                    <li><strong>E</strong>nrichment Research: 연구활동 강화</li>
+                                    <li><strong>A</strong>cceptability: 포용성 교육</li>
+                                    <li><strong>T</strong>rustworthy Citizenship: 시민성 교육</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-column">
+                            <div class="comparison-title seoul-title">서울과학고</div>
+                            <div class="comparison-content">
+                                <h4><i class="icon">🔍</i> 교훈: 예지(睿智)와 의행(義行)</h4>
+                                <ul>
+                                    <li><strong>예지(睿智)</strong>: 사물의 이치를 꿰뚫어보는 뛰어난 지혜</li>
+                                    <li><strong>의행(義行)</strong>: 마땅히 해야 할 일을 실천하며 사는 삶</li>
+                                </ul>
+                                
+                                <h4><i class="icon">🚀</i> 미션</h4>
+                                <p>인류 사회에 공헌할 창의적인 인재 양성</p>
+                                
+                                <h4><i class="icon">📌</i> 인재상: 3C</h4>
+                                <ul>
+                                    <li><strong>C</strong>ollaboration(협력): 가장 강조되는 요소</li>
+                                    <li><strong>C</strong>reativity(창의)</li>
+                                    <li><strong>C</strong>hallenge(도전)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box highlight-warning">
+                        <h4 style="margin-top: 0;">교육 철학의 차이와 지향점</h4>
+                        <p><strong>대전과학고</strong>는 '탐구'와 '혁신'을 강조하는 <strong>과학적 창의성 개발</strong> 중심의 교육철학을 보여주고 있습니다. 특히 'GREAT' 전략을 통해 개인 맞춤형 교육과정과 사회적 포용성을 함께 강조하는 것이 특징입니다.</p>
+                        <p><strong>서울과학고</strong>는 '협력'을 최우선 가치로 내세우며, <strong>공동체 중심의 영재교육</strong>을 강조합니다. OECD, 유네스코 등 국제 교육 동향을 적극 반영하여 미래사회에 필요한 역량으로 협력과 소통을 중시하는 접근법을 취하고 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Curriculum Section -->
+        <section id="curriculum">
+            <div class="section-title">
+                <h2>3. 교육과정 체계 비교</h2>
+                <p>이수학점 체계, 교육과정 특성, 운영 방식 비교</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="icon">📚</span> 교육과정 체계</h3>
+                    <p>개인 맞춤형 영재교육을 위한 교육과정 구성과 운영 방식</p>
+                </div>
+                
+                <div class="card-body">
+                    <div class="factor-box">
+                        <h4>이수학점 체계 비교</h4>
+                        <div class="factor-items">
+                            <div class="factor-item">
+                                <div class="factor-icon">📘</div>
+                                <div class="factor-title">교과활동</div>
+                                <div class="factor-description">
+                                    대전과학고: 154학점<br>
+                                    서울과학고: 152학점
+                                </div>
+                            </div>
+                            <div class="factor-item">
+                                <div class="factor-icon">🔬</div>
+                                <div class="factor-title">연구활동</div>
+                                <div class="factor-description">
+                                    대전과학고: 26학점<br>
+                                    서울과학고: 23학점
+                                </div>
+                            </div>
+                            <div class="factor-item">
+                                <div class="factor-icon">👥</div>
+                                <div class="factor-title">체험/리더십활동</div>
+                                <div class="factor-description">
+                                    대전과학고: 240시간<br>
+                                    서울과학고: 210시간
+                                </div>
+                            </div>
+                            <div class="factor-item">
+                                <div class="factor-icon">🎓</div>
+                                <div class="factor-title">총 필요학점</div>
+                                <div class="factor-description">
+                                    대전과학고: 180학점<br>
+                                    서울과학고: 175학점
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-container">
+                        <div class="comparison-column">
+                            <div class="comparison-title daejeon-title">대전과학고 교육과정 특성</div>
+                            <div class="comparison-content">
+                                <div class="feature-box">
+                                    <div class="feature-title">속진+심화 중심 교육과정</div>
+                                    <p>일반 고등학교보다 빠르고 깊이 있는 학습 진행</p>
+                                </div>
+                                
+                                <div class="feature-box">
+                                    <div class="feature-title">AP제도 강조</div>
+                                    <p>KAIST 등 과학기술특성화대학과 협약하여 대학 선이수 학점 인정</p>
+                                </div>
+                                
+                                <div class="feature-box">
+                                    <div class="feature-title">소프트AI 선도학교</div>
+                                    <p>AI융합교과 11개 개발, 교과 중심의 AI교육 선도</p>
+                                </div>
+                                
+                                <div class="feature-box">
+                                    <div class="feature-title">학년제 기본, 무학년제 병행</div>
+                                    <p>재수강 제도를 통한 학년 경계 없는 학습</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-column">
+                            <div class="comparison-title seoul-title">서울과학고 교육과정 특성</div>
+                            <div class="comparison-content">
+                                <div class="feature-box">
+                                    <div class="feature-title">수강신청 제도</div>
+                                    <p>6명 이상 신청시 과목 개설, 학생 선택권 극대화</p>
+                                </div>
+                                
+                                <div class="feature-box">
+                                    <div class="feature-title">연구활동 중심</div>
+                                    <p>교내외 연구 학점 인정, 학생 주도적 연구 강조</p>
+                                </div>
+                                
+                                <div class="feature-box">
+                                    <div class="feature-title">학생 주도적 과목 선택권</div>
+                                    <p>진로와 진학에 맞는 맞춤형 수업 선택</p>
+                                </div>
+                                
+                                <div class="feature-box">
+                                    <div class="feature-title">특화된 생활기록부</div>
+                                    <p>영재학교만의 차별화된 생활기록부 제공</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box highlight-primary">
+                        <h4 style="margin-top: 0;">교육과정 특징 비교</h4>
+                        <p>두 학교 모두 학점제와 개인 맞춤형 교육과정을 운영하지만, <strong>대전과학고</strong>는 AI 융합교육과 AP제도를 적극 활용하는 반면, <strong>서울과학고</strong>는 학생들의 선택권을 극대화하고 다양한 과목 개설에 강점을 보입니다. 대전과학고는 교과 틀 안에서의 맞춤형 교육을, 서울과학고는 학생 주도적 선택을 더 강조하는 경향이 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Research Activities Section -->
+        <section id="research">
+            <div class="section-title">
+                <h2>4. 연구활동 비교</h2>
+                <p>연구활동 체계, 운영 방식, 지원 프로그램 비교</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="icon">🔬</span> 연구활동</h3>
+                    <p>영재학교의 핵심인 연구활동 체계와 운영 방식 비교</p>
+                </div>
+                
+                <div class="card-body">
+                    <div class="table-scroll-hint">← 좌우로 스와이프하여 더 보기 →</div>
+                    <div class="table-container">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th width="20%">구분</th>
+                                    <th width="40%" class="daejeon-col">대전과학고</th>
+                                    <th width="40%" class="seoul-col">서울과학고</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>연구활동 체계</strong></td>
+                                    <td class="daejeon-col">
+                                        <ul class="feature-list">
+                                            <li><strong>자율연구(14학점)</strong>: 기초(1학년), 심화(2학년)</li>
+                                            <li><strong>현장연구(6학점)</strong>: 인턴십, 학회활동</li>
+                                            <li><strong>졸업논문연구(3학점)</strong>: 1인 1논문(3학년)</li>
+                                            <li><strong>창의융합설계연구(3학점)</strong>: 인문사회 통합 연구(신설)</li>
+                                        </ul>
+                                    </td>
+                                    <td class="seoul-col">
+                                        <ul class="feature-list">
+                                            <li><strong>주어진 지식을 넘어선 새로운 지식 창출 중시</strong></li>
+                                            <li><strong>연구 성과에 학점 부여</strong>(교내외 구분 없음)</li>
+                                            <li><strong>현장연구, 첨단과학연구 지원</strong></li>
+                                            <li><strong>외부 연구대회 참여 장려</strong></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>운영 방식</strong></td>
+                                    <td class="daejeon-col">
+                                        <ul class="feature-list">
+                                            <li>목요일 "연구의 날" 운영</li>
+                                            <li>외부연계(KAIST, 충남대, 연구소) 심화연구</li>
+                                            <li>중간/기말고사 후 소프트웨어 몰입주간</li>
+                                        </ul>
+                                    </td>
+                                    <td class="seoul-col">
+                                        <ul class="feature-list">
+                                            <li>학생 주도적 연구주제 선정</li>
+                                            <li>학생 아이디어를 존중하는 멘토링</li>
+                                            <li>과학한마당 등 학생 주도 프로그램</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="highlight-box highlight-success">
+                        <h4 style="margin-top: 0;">연구활동의 특징적 차이</h4>
+                        <div class="two-columns">
+                            <div>
+                                <h5 class="text-daejeon"><strong>대전과학고</strong></h5>
+                                <ul>
+                                    <li>명확한 연구활동 체계화(4개 영역 구분)</li>
+                                    <li>시간표에 연구시간 명시적 배정</li>
+                                    <li>지역 대학과의 연계 강화</li>
+                                    <li>인문사회 통합 연구를 별도 영역으로 구성</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="text-seoul"><strong>서울과학고</strong></h5>
+                                <ul>
+                                    <li>학생 주도성 극대화</li>
+                                    <li>교내외 연구 구분 없는 통합적 접근</li>
+                                    <li>학생 아이디어 존중 문화</li>
+                                    <li>연구 성과 중심의 학점 부여</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box highlight-warning">
+                        <h4 style="margin-top: 0;">AI/소프트웨어 교육 접근법 차이</h4>
+                        <p><strong>대전과학고</strong>는 소프트AI 선도학교로서 AI융합교과 11개를 개발하는 등 <strong>교과 중심의 AI교육</strong>을 선도하고 있습니다. 이는 AI를 학습 도구로만 보는 것이 아니라, 모든 과목에 융합하여 미래 사회의 필수 소양으로 가르치는 접근법입니다.</p>
+                        <p><strong>서울과학고</strong>의 소프트웨어/AI 교육은 따로 강조되지 않았지만, 연구활동과 문제해결 과정에서 도구로 활용하는 접근법을 취하는 것으로 보입니다. 과학한마당 등 학생 주도 프로그램에서 이러한 기술을 활용할 기회를 제공합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Special Programs Section -->
+        <section id="programs">
+            <div class="section-title">
+                <h2>5. 특색 프로그램 비교</h2>
+                <p>각 학교의 특색 있는 교육 프로그램 비교</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="icon">🌟</span> 특색 프로그램</h3>
+                    <p>차별화된 교육 경험을 제공하는 학교별 특색 프로그램</p>
+                </div>
+                
+                <div class="card-body">
+                    <div class="comparison-container">
+                        <div class="comparison-column">
+                            <div class="comparison-title daejeon-title">대전과학고 특색 프로그램</div>
+                            <div class="comparison-content">
+                                <div class="feature-box">
+                                    <div class="feature-title">국제교류</div>
+                                    <p>일본 고마츠고, 러시아 항공우주학과, 라오스 봉사활동</p>
+                                </div>
+                                
+                                <div class="feature-box">
+                                    <div class="feature-title">글로벌 리서치</div>
+                                    <p>해외 대학/연구실 연계(졸업생 멘토)</p>
+                                </div>
+                                
+                                <div class="feature-box">
+                                    <div class="feature-title">꿈지락 예술프로그램</div>
+                                    <p>주말 음악/미술 교육(22개 강좌)</p>
+                                </div>
+                                
+                                <div class="feature-box">
+                                    <div class="feature-title">진로진학 프로그램</div>
+                                    <p>학년별 맞춤형 캠프, 선배와의 대화</p>
+                                </div>
+                                
+                                <div class="feature-box">
+                                    <div class="feature-title">소프트웨어 몰입주간</div>
+                                    <p>학생 주도 프로젝트</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-column">
+                            <div class="comparison-title seoul-title">서울과학고 특색 프로그램</div>
+                            <div class="comparison-content">
+                                <div class="feature-box">
+                                    <div class="feature-title">과학한마당</div>
+                                    <p>학생 주도 과학 프로그램</p>
+                                </div>
+                                
+                                <div class="feature-box">
+                                    <div class="feature-title">졸업생 강연</div>
+                                    <p>다양한 분야 졸업생 초청 강연</p>
+                                </div>
+                                
+                                <div class="feature-box">
+                                    <div class="feature-title">국제대회/올림피아드</div>
+                                    <p>적극적 참여 지원, 수많은 메달 획득</p>
+                                </div>
+                                
+                                <div class="feature-box">
+                                    <div class="feature-title">불일치 프로그램</div>
+                                    <p>입학 전 교육 프로그램</p>
+                                </div>
+                                
+                                <div class="feature-box">
+                                    <div class="feature-title">존 듀이 철학 강조</div>
+                                    <p>"교육은 삶에 대한 준비가 아닌 삶 그 자체"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pros-cons">
+                        <div class="pros-cons-col pros-col">
+                            <div class="pros-cons-title pros-title">대전과학고 특장점</div>
+                            <ul>
+                                <li>예술 프로그램을 통한 균형 잡힌 교육</li>
+                                <li>글로벌 교류와 국제적 시야 확장</li>
+                                <li>학제간 융합 연구에 대한 강조</li>
+                                <li>소프트웨어/AI 교육에 특화된 몰입형 프로그램</li>
+                            </ul>
+                        </div>
+                        <div class="pros-cons-col pros-col">
+                            <div class="pros-cons-title pros-title">서울과학고 특장점</div>
+                            <ul>
+                                <li>강력한 졸업생 네트워크와 멘토링</li>
+                                <li>국제 대회 참여 및 수상 실적</li>
+                                <li>현장 중심의 실질적 경험 제공</li>
+                                <li>학생 주도의 자율적 문화 형성</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box highlight-primary">
+                        <h4 style="margin-top: 0;">프로그램 운영 철학의 차이</h4>
+                        <p><strong>대전과학고</strong>는 예술 프로그램, 글로벌 리서치 등을 통해 <strong>다방면으로 성장하는 균형 잡힌 인재</strong> 양성을 지향하며, 특히 국제 교류와 예술 교육에 강점을 보입니다.</p>
+                        <p><strong>서울과학고</strong>는 졸업생 네트워크, 국제 대회, 학생 주도 프로그램 등을 통해 <strong>탁월한 전문성과 리더십</strong>을 갖춘 인재 양성에 주력하며, 특히 존 듀이의 교육철학을 강조하여 교육 과정 자체가 의미 있는 경험이 되도록 합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Admission Section -->
+        <section id="admission">
+            <div class="section-title">
+                <h2>6. 입학전형 비교</h2>
+                <p>모집 인원, 전형 방법, 지역인재 선발 등 입학전형 비교</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="icon">📝</span> 입학전형</h3>
+                    <p>각 학교의 입학전형 방식과 특징</p>
+                </div>
+                
+                <div class="card-body">
+                    <div class="table-scroll-hint">← 좌우로 스와이프하여 더 보기 →</div>
+                    <div class="table-container">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th width="20%">구분</th>
+                                    <th width="40%" class="daejeon-col">대전과학고</th>
+                                    <th width="40%" class="seoul-col">서울과학고</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>모집인원</strong></td>
+                                    <td class="daejeon-col">정원내 99명(일반 90명, 사회통합 9명)</td>
+                                    <td class="seoul-col">정원내 120명, 정원외 12명 이내</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>지역인재 우선선발</strong></td>
+                                    <td class="daejeon-col">
+                                        <ul class="feature-list">
+                                            <li>34명 이내</li>
+                                            <li>대전 15명(자치구별 최대 2명)</li>
+                                            <li>충남/충북/강원 각 2명</li>
+                                            <li>기타 지역 각 1명</li>
+                                        </ul>
+                                    </td>
+                                    <td class="seoul-col">
+                                        <ul class="feature-list">
+                                            <li>41개 지역 각 2명 이내</li>
+                                            <li>서울 25개 자치구(최대 50명)</li>
+                                            <li>16개 광역시도(최대 32명)</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>전형방법</strong></td>
+                                    <td class="daejeon-col">
+                                        <ul class="feature-list">
+                                            <li><strong>1단계:</strong> 학생기록물 평가(약 80% 합격)</li>
+                                            <li><strong>2단계:</strong> 창의적 문제해결력 평가(수학/과학 각 100분)</li>
+                                            <li><strong>3단계:</strong> 영재성 다면평가(수학/과학/정보 면접, 토론, 실험)</li>
+                                        </ul>
+                                    </td>
+                                    <td class="seoul-col">
+                                        <ul class="feature-list">
+                                            <li><strong>1단계:</strong> 학생기록물 평가(배수 제한 없음)</li>
+                                            <li><strong>2단계:</strong> 영재성/사고력 평가(200명 내외 선발)</li>
+                                            <li><strong>3단계:</strong> 진학의지/인성 평가</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>특징</strong></td>
+                                    <td class="daejeon-col">2단계 후 지역인재 우선선발 대상자 선정</td>
+                                    <td class="seoul-col">2026학년도부터 3단계 후 우선선발 결정(전형 통합)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="highlight-box highlight-primary">
+                        <h4 style="margin-top: 0;">입학전형의 철학적 차이</h4>
+                        <p><strong>대전과학고</strong>는 2단계에서 창의적 문제해결력을 평가한 후 지역인재를 우선 선발하는 방식을 취하고 있습니다. 이는 학생의 학업역량을 먼저 확인한 후 지역 안배를 고려하는 접근법입니다.</p>
+                        <p><strong>서울과학고</strong>는 2026학년도부터 3단계까지 모든 평가를 마친 후 종합적으로 우선선발을 결정하는 방식으로 변경합니다. 이는 학업역량뿐만 아니라 인성과 진학의지까지 종합적으로 평가한 후에 선발하겠다는 <strong>전인적 평가</strong>의 철학을 담고 있습니다.</p>
+                    </div>
+                    
+                    <div class="highlight-box highlight-warning">
+                        <h4 style="margin-top: 0;">공통점</h4>
+                        <p>두 학교 모두 <strong>다단계 전형</strong>을 통해 학생을 선발하며, 단순 학업성취도보다는 <strong>잠재력, 창의성, 인성</strong>을 중시합니다. 또한 <strong>의약학계열 진학 제한</strong>과 같은 정책도 공통적으로 적용하고 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Analysis Section -->
+        <section id="analysis">
+            <div class="section-title">
+                <h2>7. 영재고 전문가 시각의 심층 분석</h2>
+                <p>두 학교의 특성과 차이점에 대한 전문적 분석</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3><span class="icon">🔎</span> 심층 분석</h3>
+                    <p>교육 철학, 규모, 운영 방식 등에 대한 종합적 분석</p>
+                </div>
+                
+                <div class="card-body">
+                    <h4><i class="icon">🎯</i> 규모와 자원 활용의 차이</h4>
+                    <p>두 학교의 가장 큰 차이점 중 하나는 <strong>규모</strong>입니다. 서울과학고(379명)는 대전과학고(약 280명)보다 100명 이상 많은 학생을 수용합니다. 이러한 규모 차이는 교육과정 운영 방식과 자원 활용에 영향을 미칩니다.</p>
+                    
+                    <div class="two-columns">
+                        <div>
+                            <h5 class="text-seoul"><strong>서울과학고 - 규모의 장점</strong></h5>
+                            <p>상대적으로 많은 학생 수와 교사진을 바탕으로 <strong>다양한 선택과목 개설</strong>과 <strong>세분화된 전문교육</strong>이 가능합니다. 특히 6명만 모이면 과목이 개설되는 시스템은 소수 관심 분야도 교육받을 수 있는 기회를 제공합니다.</p>
+                        </div>
+                        <div>
+                            <h5 class="text-daejeon"><strong>대전과학고 - 밀착형 교육</strong></h5>
+                            <p>상대적으로 작은 규모를 활용하여 <strong>더 밀착된 지도</strong>와 <strong>지역 연계 활동</strong>에 강점을 보입니다. KAIST, 충남대 등 지역 대학과의 연계를 강화하여 학생들이 실제 연구현장을 경험할 수 있는 기회를 적극 제공하고 있습니다.</p>
+                        </div>
+                    </div>
+                    
+                    <h4><i class="icon">📊</i> 시사점 및 지원 전략</h4>
+                    <p>이러한 차이점을 바탕으로, 영재고 지원자는 자신의 성향과 강점에 맞는 학교를 선택하는 것이 중요합니다:</p>
+                    
+                    <ol>
+                        <li><strong>과학적 탐구심과 개인 맞춤형 성장</strong>을 원하는 학생은 대전과학고의 철학과 더 잘 맞을 수 있습니다.</li>
+                        <li><strong>공동체 협력과 다양한 선택 기회</strong>를 원하는 학생은 서울과학고의 교육 환경이 더 적합할 수 있습니다.</li>
+                        <li><strong>AI/소프트웨어 융합교육</strong>에 관심이 있다면 대전과학고의 AI교육과정이 매력적일 수 있습니다.</li>
+                        <li><strong>졸업생 네트워크와 풍부한 자원</strong>을 활용하고 싶다면 서울과학고의 강점을 고려해볼 수 있습니다.</li>
+                    </ol>
+                    
+                    <div class="highlight-box highlight-success">
+                        <h4 style="margin-top: 0;">결론</h4>
+                        <p>대전과학고와 서울과학고는 모두 우수한 과학영재교육 기관으로서, 각자의 철학과 강점을 바탕으로 미래 과학기술 발전을 이끌어갈 인재를 양성하고 있습니다. 단순히 어느 학교가 더 좋다고 판단하기보다는, 각 학교의 특성을 이해하고 학생 개인의 성향과 목표에 맞는 선택을 하는 것이 중요합니다.</p>
+                        <p>두 학교 모두 기존의 주입식 교육에서 벗어나 학생 주도적 탐구와 연구를 강조하며, 미래사회가 요구하는 역량을 키우는 방향으로 교육과정을 발전시키고 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">R</div>
+                    <div class="footer-text">
+                        <h3>영재교육 연구소</h3>
+                        <p>미래 과학기술 인재 양성을 위한 분석 보고서</p>
+                    </div>
+                </div>
+                <div class="footer-right">
+                    <p>© 2025 영재교육 연구소 | 작성일: 2025.04.15</p>
+                    <p>문의: research@gifted-education.org</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top -->
+    <div class="back-to-top">↑</div>
+    
+    <script>
+        // 햄버거 메뉴 토글
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // 메뉴 클릭시 메뉴 닫기
+        const menuItems = document.querySelectorAll('#navMenu a');
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if (window.innerWidth <= 767) {
+                    navMenu.classList.remove('show');
+                }
+            });
+        });
+        
+        // 스크롤 이벤트에 따른 백투탑 버튼 표시
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 부드러운 스크롤 이동
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 테이블 스와이프 힌트 표시 (모바일에서만)
+        const tables = document.querySelectorAll('.table-container');
+        tables.forEach(table => {
+            if (table.scrollWidth > table.clientWidth) {
+                const hint = table.previousElementSibling;
+                if (hint && hint.classList.contains('table-scroll-hint')) {
+                    hint.style.display = 'block';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
