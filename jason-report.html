@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조형동 영어 발전 보고서</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #e5863e;
+            --primary-light: #f7d4b5;
+            --primary-dark: #d06b25;
+            --secondary: #475569;
+            --accent: #f8fafc;
+            --high: #ef4444;
+            --medium: #f59e0b;
+            --low: #10b981;
+            --text-dark: #334155;
+            --text-light: #f8fafc;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --radius: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--accent);
+            line-height: 1.4;
+            font-size: 14px;
+            padding-bottom: 60px;
+        }
+        
+        /* Typography */
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #000 0%, #6f6e6e 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        
+        h2 {
+            font-size: 16px;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        
+        h3 {
+            font-size: 18px;
+            color: var(--primary-dark);
+            font-weight: 700;
+            margin: 24px 0 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h3 i {
+            margin-right: 8px;
+        }
+        
+        p {
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        
+        /* Layout Components */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        
+        .header {
+            padding: 20px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .logo-date {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .two-column {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .column-60 {
+            flex: 1 1 60%;
+            min-width: 250px;
+        }
+        
+        .column-40 {
+            flex: 1 1 40%;
+            min-width: 200px;
+        }
+        
+        /* Component Styles */
+        .executive-summary {
+            background: linear-gradient(135deg, var(--primary-light) 0%, white 100%);
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        
+        .kpi-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .kpi-title {
+            font-size: 14px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .kpi-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .kpi-value {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .kpi-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .highlight {
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+        
+        .factor-box {
+            background-color: var(--primary-light);
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .factor-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+            font-size: 15px;
+        }
+        
+        .progress-item {
+            margin-bottom: 16px;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+        
+        .progress-title {
+            font-weight: 600;
+        }
+        
+        .progress-value {
+            font-weight: 700;
+        }
+        
+        .progress-value.high {
+            color: var(--high);
+        }
+        
+        .progress-value.medium {
+            color: var(--medium);
+        }
+        
+        .progress-value.low {
+            color: var(--low);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e9e9e9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .progress-fill.high {
+            background-color: var(--high);
+        }
+        
+        .progress-fill.medium {
+            background-color: var(--medium);
+        }
+        
+        .progress-fill.low {
+            background-color: var(--low);
+        }
+        
+        .progress-fill.primary {
+            background-color: var(--primary);
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--primary-light);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding-left: 40px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 7px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            border: 3px solid white;
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .timeline-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+        
+        .book-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .book-item {
+            background-color: var(--primary-light);
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .book-level {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+        
+        .quote {
+            border-left: 3px solid var(--primary);
+            padding-left: 12px;
+            margin: 12px 0;
+            font-style: italic;
+            font-size: 13px;
+            color: var(--secondary);
+        }
+        
+        .chart-container {
+            height: 200px;
+            margin: 20px 0;
+        }
+        
+        .book-progress-chart {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .chart-bar {
+            display: flex;
+            align-items: flex-end;
+            height: 160px;
+            gap: 10px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .chart-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        .chart-bar-fill {
+            width: 30px;
+            background-color: var(--primary);
+            border-radius: 4px 4px 0 0;
+        }
+        
+        .chart-label {
+            position: absolute;
+            bottom: -20px;
+            font-size: 10px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .chart-value {
+            position: absolute;
+            top: -20px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+        
+        .badge-primary {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+        }
+        
+        .badge-high {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--high);
+        }
+        
+        .badge-medium {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--medium);
+        }
+        
+        .badge-low {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--low);
+        }
+        
+        .checklist-item {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        
+        .checklist-icon {
+            color: var(--primary);
+            margin-right: 8px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 20px 0;
+            margin-top: 40px;
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        .footer img {
+            height: 30px;
+            margin-bottom: 12px;
+        }
+        
+        /* Icons */
+        .icon {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background-color: currentColor;
+            margin-right: 6px;
+            vertical-align: middle;
+            -webkit-mask-size: cover;
+            mask-size: cover;
+        }
+        
+        .icon-chart {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 12h4v8H3v-8zm7-8h4v16h-4V4zm7 4h4v12h-4V8z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 12h4v8H3v-8zm7-8h4v16h-4V4zm7 4h4v12h-4V8z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-book {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21a9 9 0 0 1-9-9 9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9zm0-18C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm1 14h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21a9 9 0 0 1-9-9 9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9zm0-18C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm1 14h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-speech {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z'/%3E%3Cpath d='M7 9h10v2H7zM7 6h10v2H7zM7 12h7v2H7z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z'/%3E%3Cpath d='M7 9h10v2H7zM7 6h10v2H7zM7 12h7v2H7z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-writing {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-growth {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-future {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-check {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+            width: 18px;
+            height: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <h1>조형동 (Jason)</h1>
+                    <h2>영어 발전 보고서</h2>
+                </div>
+                <div class="won-jang-signature">이노블스 강남점 KJ Lee 원장
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Executive Summary -->
+        <div class="executive-summary">
+            <p>Jason(형동)은 2025년 2월부터 4월까지 <span class="highlight">꾸준한 영어 발전</span>을 보여주었습니다. 특히 <span class="highlight">독서 이해력</span>과 <span class="highlight">어휘 적용 능력</span>에서 뚜렷한 향상을 보였으며, 실수를 수정하고 피드백을 적용하려는 <span class="highlight">자기주도적 학습 태도</span>가 인상적이었습니다.</p>
+        </div>
+        
+        <!-- KPI Card -->
+        <div class="kpi-card">
+            <div class="kpi-title">주요 성과 지표 (KPIs)</div>
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <div class="kpi-value">75%</div>
+                    <div class="kpi-label">스토리 이해도</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">70%</div>
+                    <div class="kpi-label">어휘력</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">B+</div>
+                    <div class="kpi-label">말하기 능력</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">B</div>
+                    <div class="kpi-label">작문 능력</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Overview Card -->
+        <div class="card">
+            <h3><span class="icon icon-chart"></span> 학습 개요</h3>
+            
+            <div class="two-column">
+                <div class="column-60">
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-title">독해력</span>
+                            <span class="progress-value medium">양호함</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill medium" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-title">어휘력</span>
+                            <span class="progress-value medium">발전 중</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill medium" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-title">말하기</span>
+                            <span class="progress-value low">발전 중</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill low" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-title">작문</span>
+                            <span class="progress-value medium">발전 중</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill medium" style="width: 68%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column-40">
+                    <div class="factor-box">
+                        <div class="factor-title">핵심 역량</div>
+                        <div>
+                            <div class="badge badge-medium">이야기 이해력</div>
+                            <div class="badge badge-low">어휘 습득력</div>
+                            <div class="badge badge-primary">피드백 수용력</div>
+                            <div class="badge badge-medium">독서 태도</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">주목할 점</div>
+                <p>Jason은 <span class="highlight">주어진 이야기의 핵심을 파악하는 능력</span>이 뛰어나며, <span class="highlight">새로운 어휘를 배우고 적용하는데 열의</span>를 보입니다. 특히 <span class="highlight">교사의 피드백을 적극적으로 수용</span>하고 다음 학습에 반영하려는 노력이 돋보입니다. 문법 사용, 특히 시제와 주어-동사 일치에서는 계속 연습이 필요합니다.</p>
+            </div>
+        </div>
+        
+        <!-- Reading Journey -->
+        <div class="card">
+            <h3><span class="icon icon-book"></span> 독서 여정</h3>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">초기 단계 (2025년 2월)</div>
+                        <div class="book-list">
+                            <div class="book-item">
+                                <div class="book-level">E</div>
+                                Esio Trot
+                            </div>
+                            <div class="book-item">
+                                <div class="book-level">E</div>
+                                Super Rabbit Boy
+                            </div>
+                        </div>
+                        <p>초기에 Jason은 <span class="highlight">기본적인 줄거리를 이해</span>하는 데 집중했으며, 이야기의 중심 사건과 인물을 파악할 수 있었습니다.</p>
+                        <div class="quote">
+                            "The student mentioned that the book was a bit difficult, but overall, he showed a good understanding of the material."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">중간 단계 (2025년 3월)</div>
+                        <div class="book-list">
+                            <div class="book-item">
+                                <div class="book-level">I</div>
+                                The Canterville Ghost
+                            </div>
+                            <div class="book-item">
+                                <div class="book-level">I</div>
+                                Jack and Annie Series
+                            </div>
+                        </div>
+                        <p>중간 단계에서는 <span class="highlight">더 복잡한 스토리 구조</span>를 접하며, 인물의 감정과 동기에 대해 더 깊이 이해하기 시작했습니다.</p>
+                        <div class="quote">
+                            "Jason engaged with the key ideas from the ending of The Canterville Ghost, even though the story was challenging."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">현재 단계 (2025년 4월)</div>
+                        <div class="book-list">
+                            <div class="book-item">
+                                <div class="book-level">J</div>
+                                Dragon Masters Series
+                            </div>
+                        </div>
+                        <p>현재 Jason은 <span class="highlight">Dragon Masters 시리즈</span>를 통해 연속된 스토리라인을 따라가며 <span class="highlight">인물 관계와 사건의 인과관계</span>를 더 깊이 이해하고 있습니다.</p>
+                        <div class="quote">
+                            "Jason talked about Eko's belief that dragons shouldn't be controlled and described how Rori's decision shocked the team. He also explained the storm Eko created and how it made rescuing Lalo harder."
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">독서 성과 분석</div>
+                <p>Jason은 <span class="highlight">점차 더 높은 수준의 책</span>에 도전하며 독서 실력을 꾸준히 향상시켰습니다. 초기에는 간단한 줄거리 파악에 중점을 두었지만, 현재는 <span class="highlight">복잡한 등장인물 관계와 사건의 인과관계</span>까지 이해하며 독서의 깊이가 더해졌습니다. 특히 Dragon Masters 시리즈를 통해 <span class="highlight">일관된 캐릭터의 성장과 변화</span>를 관찰하는 능력이 발전했습니다.</p>
+            </div>
+        </div>
+        
+        <!-- Speaking Development -->
+        <div class="card">
+            <h3><span class="icon icon-speech"></span> 말하기 능력 발전</h3>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">초기 단계 (2025년 2월)</div>
+                        <p>초기에 Jason은 <span class="highlight">간단한 대답</span>은 할 수 있었지만, 생각을 정리하는 데 시간이 걸렸고 <span class="highlight">문법적 오류</span>가 자주 발생했습니다.</p>
+                        <div class="quote">
+                            "Hyungdong participated well in the discussion about George's Marvelous Medicine. For the first question, he understood the word motivates after the teacher explained it but realized he couldn't recall the story details."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">중간 단계 (2025년 3월)</div>
+                        <p>중간 단계에서는 <span class="highlight">더 상세한 답변</span>을 제공할 수 있게 되었고, <span class="highlight">새로운 어휘를 적용</span>하는 능력이 향상되었습니다.</p>
+                        <div class="quote">
+                            "Jason quickly incorporated new words into his speaking, demonstrating adaptability and a growing vocabulary. He organized the events in a clear sequential order, making his storytelling easy to follow."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">현재 단계 (2025년 4월)</div>
+                        <p>현재 Jason은 <span class="highlight">자신감 있는 대화</span>가 가능하며, <span class="highlight">복잡한 이야기 요소</span>에 대해서도 논의할 수 있게 되었습니다.</p>
+                        <div class="quote">
+                            "The student confidently explained that the Dragon Masters discovered an ice giant attack and clearly described the icy forest and the missing Rory, showing strong memory of key events."
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">주요 향상 영역</div>
+                <ul>
+                    <li><span class="highlight">자신감:</span> 초기에는 망설임이 있었지만, 점차 자신의 생각을 표현하는 데 더 자신감이 생겼습니다.</li>
+                    <li><span class="highlight">어휘 확장:</span> 새로운 단어와 표현을 배우고 실제 대화에 활용하는 능력이 향상되었습니다.</li>
+                    <li><span class="highlight">문장 구성:</span> 단순 답변에서 점차 완전한 문장으로 대답하는 비율이 높아졌습니다.</li>
+                    <li><span class="highlight">이야기 서술:</span> 사건을 논리적 순서로 설명하는 능력이 발전했습니다.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Writing Development -->
+        <div class="card">
+            <h3><span class="icon icon-writing"></span> 작문 능력 발전</h3>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">초기 단계 (2025년 2월)</div>
+                        <p>초기 작문에서는 <span class="highlight">기본적인 문법 오류</span>가 많이 발견되었으며, 특히 시제와 주어-동사 일치에 어려움을 겪었습니다.</p>
+                        <div class="quote">
+                            "Hyungdong tends to use both be verbs and regular verbs together in sentences, a common habit that the teacher addressed. Aside from this, his ability to express ideas in writing is strong and well-organized."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">중간 단계 (2025년 3월)</div>
+                        <p>중간 단계에서는 <span class="highlight">구조화된 문단</span>을 작성할 수 있게 되었으며, 문법적 오류도 점차 줄어들었습니다.</p>
+                        <div class="quote">
+                            "Jason maintained good tense consistency throughout the writing, with some guidance on correctly using past tense verb forms like 'was,' 'died,' and other past-tense constructions."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">현재 단계 (2025년 4월)</div>
+                        <p>현재 Jason은 <span class="highlight">논리적으로 연결된 요약문</span>을 작성할 수 있으며, 피드백을 통해 오류를 수정하는 능력이 크게 향상되었습니다.</p>
+                        <div class="quote">
+                            "Hyungdong correctly identified the causal relationships in the story, clearly explaining why certain events happened and how the characters' actions affected the outcome."
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">주요 향상 영역</div>
+                <ul>
+                    <li><span class="highlight">문법적 정확성:</span> 시제, 전치사, 주어-동사 일치 등의 기본 문법 사용이 점진적으로 개선되었습니다.</li>
+                    <li><span class="highlight">구조화된 요약:</span> 이야기의 주요 요소를 논리적 순서로 요약하는 능력이 향상되었습니다.</li>
+                    <li><span class="highlight">인과관계 표현:</span> 사건 간의 인과관계를 명확히 설명하는 능력이 발전했습니다.</li>
+                    <li><span class="highlight">수정 능력:</span> 피드백을 받은 후 자신의 글을 수정하고 개선하는 능력이 향상되었습니다.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Key Growth Areas -->
+        <div class="card">
+            <h3><span class="icon icon-growth"></span> 주요 성장 영역</h3>
+            
+            <div class="two-column">
+                <div class="column-60">
+                    <div class="factor-title">1. 독해 및 이야기 이해력</div>
+                    <p>Jason은 <span class="highlight">책의 주요 사건과 인물을 잘 기억</span>하고 이해합니다. 교사는 이렇게 언급했습니다: "The student confidently explained that the Dragon Masters discovered an ice giant attack and clearly described the icy forest and the missing Rory, showing strong memory of key events."</p>
+                    
+                    <div class="factor-title">2. 어휘 확장 및 활용</div>
+                    <p>새로운 단어를 배우고 적용하는 능력이 향상되었습니다: "Jason quickly incorporated new words into his speaking, demonstrating adaptability and a growing vocabulary."</p>
+                </div>
+                
+                <div class="column-40">
+                    <div class="factor-title">3. 피드백 수용 및 적용</div>
+                    <p>교사의 피드백을 적극적으로 수용하고 다음 학습에 적용하는 태도가 돋보입니다: "With the teacher's guidance, he worked on correcting these errors, improving the accuracy of his writing."</p>
+                    
+                    <div class="factor-title">4. 자신감 발전</div>
+                    <p>초기보다 자신의 생각을 표현하는 데 더 자신감을 보입니다: "His answers were thoughtful and clearly connected to the story. Great job today!"</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Future Outlook -->
+        <div class="card">
+            <h3><span class="icon icon-future"></span> 향후 전망 및 추천사항</h3>
+            
+            <div class="factor-box">
+                <div class="factor-title">독서 및 어휘 개발</div>
+                <ul>
+                    <li>현재 읽고 있는 Dragon Masters 시리즈를 계속 읽으며 <span class="highlight">일관된 캐릭터 발전과 복잡한 플롯</span>을 이해하는 연습 계속하기</li>
+                    <li>시리즈를 통해 반복되는 어휘를 익히고 <span class="highlight">새로운 표현을 능동적으로 찾아보기</span></li>
+                    <li>다양한 장르의 책(모험, 판타지, 역사 등)으로 독서 범위 확장하기</li>
+                </ul>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">말하기 및 작문 능력</div>
+                <ul>
+                    <li><span class="highlight">완전한 문장으로 대답하는 연습</span> 계속하기</li>
+                    <li>시제의 일관성과 주어-동사 일치에 <span class="highlight">특별한 주의를 기울이기</span></li>
+                    <li>이야기의 인과관계와 등장인물의 감정 변화에 대해 <span class="highlight">더 깊이 탐구하기</span></li>
+                    <li>일상 대화에서 새로 배운 <span class="highlight">어휘와 표현을 적극적으로 활용</span>하기</li>
+                </ul>
+            </div>
+            
+            <p>Jason의 <span class="highlight">피드백을 수용하고 적용하는 능력</span>은 앞으로의 영어 학습에 큰 도움이 될 것입니다. 꾸준한 연습과 독서를 통해 어휘력과 문법적 정확성을 계속 발전시키면, 더욱 자연스럽고 자신감 있는 영어 표현이 가능해질 것입니다.</p>
+        </div>
+        
+        <!-- Conclusion -->
+        <div class="card">
+            <h3>결론</h3>
+            
+            <div class="factor-box">
+                <p>Jason(형동)은 지난 3개월 동안 <span class="highlight">꾸준하고 의미 있는 영어 발전</span>을 보여주었습니다. 특히 <span class="highlight">독해력과 어휘 적용</span> 능력이 크게 향상되었으며, 자신감 있는 표현과 체계적인 요약 능력도 발전했습니다.</p>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">스토리 이해력</span> - 복잡한 플롯과 인물 관계를 파악하는 능력 향상</div>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">어휘 확장</span> - 새로운 단어와 표현을 학습하고 적용하는 능력 발전</div>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">표현력</span> - 더 완전하고 구조화된 문장으로 의견을 표현하는 능력 향상</div>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">피드백 수용력</span> - 교사의 제안을 이해하고 적용하는 자기 주도적 학습 태도</div>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">자신감</span> - 영어로 생각을 표현하는 데 있어 높아진 자신감</div>
+            </div>
+            
+            <p style="margin-top: 20px;">Jason의 <span class="highlight">꾸준한 학습 열의와 피드백 수용 능력</span>은 앞으로의 영어 실력 향상에 큰 원동력이 될 것입니다. 현재의 학습 방식을 유지하면서 문법적 정확성에 조금 더 집중한다면, 곧 더욱 유창하고 정확한 영어 표현이 가능해질 것입니다.</p>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>이노블스 영어도서관</p>
+        </div>
+    </footer>
+</body>
+</html>
