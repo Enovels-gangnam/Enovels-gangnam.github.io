@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이학수 영어 발전 보고서</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #e5863e;
+            --primary-light: #f7d4b5;
+            --primary-dark: #d06b25;
+            --secondary: #475569;
+            --accent: #f8fafc;
+            --high: #ef4444;
+            --medium: #f59e0b;
+            --low: #10b981;
+            --text-dark: #334155;
+            --text-light: #f8fafc;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --radius: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--accent);
+            line-height: 1.4;
+            font-size: 14px;
+            padding-bottom: 60px;
+        }
+        
+        /* Typography */
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #000 0%, #6f6e6e 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        
+        h2 {
+            font-size: 16px;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        
+        h3 {
+            font-size: 18px;
+            color: var(--primary-dark);
+            font-weight: 700;
+            margin: 24px 0 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h3 i {
+            margin-right: 8px;
+        }
+        
+        p {
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        
+        /* Layout Components */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        
+        .header {
+            padding: 20px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .logo-date {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .two-column {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .column-60 {
+            flex: 1 1 60%;
+            min-width: 250px;
+        }
+        
+        .column-40 {
+            flex: 1 1 40%;
+            min-width: 200px;
+        }
+        
+        /* Component Styles */
+        .executive-summary {
+            background: linear-gradient(135deg, var(--primary-light) 0%, white 100%);
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        
+        .kpi-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .kpi-title {
+            font-size: 14px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .kpi-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .kpi-value {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .kpi-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .highlight {
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+        
+        .factor-box {
+            background-color: var(--primary-light);
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .factor-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+            font-size: 15px;
+        }
+        
+        .progress-item {
+            margin-bottom: 16px;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+        
+        .progress-title {
+            font-weight: 600;
+        }
+        
+        .progress-value {
+            font-weight: 700;
+        }
+        
+        .progress-value.high {
+            color: var(--high);
+        }
+        
+        .progress-value.medium {
+            color: var(--medium);
+        }
+        
+        .progress-value.low {
+            color: var(--low);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e9e9e9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .progress-fill.high {
+            background-color: var(--high);
+        }
+        
+        .progress-fill.medium {
+            background-color: var(--medium);
+        }
+        
+        .progress-fill.low {
+            background-color: var(--low);
+        }
+        
+        .progress-fill.primary {
+            background-color: var(--primary);
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--primary-light);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding-left: 40px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 7px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            border: 3px solid white;
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .timeline-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+        
+        .book-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .book-item {
+            background-color: var(--primary-light);
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .book-level {
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+        
+        .quote {
+            border-left: 3px solid var(--primary);
+            padding-left: 12px;
+            margin: 12px 0;
+            font-style: italic;
+            font-size: 13px;
+            color: var(--secondary);
+        }
+        
+        .chart-container {
+            height: 200px;
+            margin: 20px 0;
+        }
+        
+        .book-progress-chart {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .chart-bar {
+            display: flex;
+            align-items: flex-end;
+            height: 160px;
+            gap: 10px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .chart-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        .chart-bar-fill {
+            width: 30px;
+            background-color: var(--primary);
+            border-radius: 4px 4px 0 0;
+        }
+        
+        .chart-label {
+            position: absolute;
+            bottom: -20px;
+            font-size: 10px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .chart-value {
+            position: absolute;
+            top: -20px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+        
+        .badge-primary {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+        }
+        
+        .badge-high {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--high);
+        }
+        
+        .badge-medium {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--medium);
+        }
+        
+        .badge-low {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--low);
+        }
+        
+        .checklist-item {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        
+        .checklist-icon {
+            color: var(--primary);
+            margin-right: 8px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 20px 0;
+            margin-top: 40px;
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        .footer img {
+            height: 30px;
+            margin-bottom: 12px;
+        }
+        
+        /* Icons */
+        .icon {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background-color: currentColor;
+            margin-right: 6px;
+            vertical-align: middle;
+            -webkit-mask-size: cover;
+            mask-size: cover;
+        }
+        
+        .icon-chart {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 12h4v8H3v-8zm7-8h4v16h-4V4zm7 4h4v12h-4V8z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 12h4v8H3v-8zm7-8h4v16h-4V4zm7 4h4v12h-4V8z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-book {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21a9 9 0 0 1-9-9 9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9zm0-18C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm1 14h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21a9 9 0 0 1-9-9 9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9zm0-18C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm1 14h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-speech {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z'/%3E%3Cpath d='M7 9h10v2H7zM7 6h10v2H7zM7 12h7v2H7z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z'/%3E%3Cpath d='M7 9h10v2H7zM7 6h10v2H7zM7 12h7v2H7z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-writing {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-growth {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-future {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z'/%3E%3C/svg%3E");
+        }
+        
+        .icon-check {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+            width: 18px;
+            height: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <h1>이학수 (Haksoo)</h1>
+                    <h2>영어 발전 보고서</h2>
+                </div>
+                <div class="won-jang-signature">이노블스 강남점 KJ Lee 원장
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Executive Summary -->
+        <div class="executive-summary">
+            <p>Haksoo는 2025년 1월부터 5월까지 <span class="highlight">꾸준한 영어 실력 향상</span>을 보여주었습니다. 특히 <span class="highlight">이야기를 이해하고 주요 요소를 설명하는 능력</span>과 <span class="highlight">문장을 구성하여 생각을 명확하게 전달하는 능력</span>이 크게 발전했습니다.</p>
+        </div>
+        
+        <!-- KPI Card -->
+        <div class="kpi-card">
+            <div class="kpi-title">주요 성과 지표 (KPIs)</div>
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <div class="kpi-value">B+</div>
+                    <div class="kpi-label">이해력</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">B</div>
+                    <div class="kpi-label">표현력</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">B-</div>
+                    <div class="kpi-label">문법 정확성</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-value">A-</div>
+                    <div class="kpi-label">참여도</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Overview Card -->
+        <div class="card">
+            <h3><span class="icon icon-chart"></span> 학습 개요</h3>
+            
+            <div class="two-column">
+                <div class="column-60">
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-title">이해력</span>
+                            <span class="progress-value medium">양호함</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill medium" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-title">표현력</span>
+                            <span class="progress-value medium">향상 중</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill medium" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-title">문법 정확성</span>
+                            <span class="progress-value medium">향상 중</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill medium" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-title">주요 내용 기억</span>
+                            <span class="progress-value high">양호함</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill high" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column-40">
+                    <div class="factor-box">
+                        <div class="factor-title">핵심 역량</div>
+                        <div>
+                            <div class="badge badge-high">이야기 기억력</div>
+                            <div class="badge badge-medium">핵심 요소 파악</div>
+                            <div class="badge badge-primary">집중력</div>
+                            <div class="badge badge-low">문장 구성력</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">주목할 점</div>
+                <p>Haksoo는 <span class="highlight">이야기의 주요 사건과 등장인물의 행동을 기억하고 설명하는 능력</span>이 뛰어납니다. 교사의 도움을 받아 <span class="highlight">완전한 문장으로 자신의 생각을 표현</span>하는 능력도 점차 향상되고 있습니다. 특히 판타지 소설과 논픽션 과학 주제에 대한 관심과 이해도가 높습니다.</p>
+            </div>
+        </div>
+        
+        <!-- Reading Journey -->
+        <div class="card">
+            <h3><span class="icon icon-book"></span> 독서 여정</h3>
+            
+            <div class="book-progress-chart">
+                <div class="factor-title">독서 주제 다양화</div>
+                <div class="chart-bar">
+                    <div class="chart-column">
+                        <div class="chart-value">판타지</div>
+                        <div class="chart-bar-fill" style="height: 50%"></div>
+                        <div class="chart-label">1-2월</div>
+                    </div>
+                    <div class="chart-column">
+                        <div class="chart-value">드래곤 시리즈</div>
+                        <div class="chart-bar-fill" style="height: 65%"></div>
+                        <div class="chart-label">3월</div>
+                    </div>
+                    <div class="chart-column">
+                        <div class="chart-value">논픽션</div>
+                        <div class="chart-bar-fill" style="height: 75%"></div>
+                        <div class="chart-label">4월</div>
+                    </div>
+                    <div class="chart-column">
+                        <div class="chart-value">판타지</div>
+                        <div class="chart-bar-fill" style="height: 80%"></div>
+                        <div class="chart-label">5월</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">초기 단계 (1-2월)</div>
+                        <div class="book-list">
+                            <div class="book-item">
+                                <div class="book-level">초</div>
+                                Freddy's Summer
+                            </div>
+                            <div class="book-item">
+                                <div class="book-level">초</div>
+                                Ice Dragon
+                            </div>
+                        </div>
+                        <p>초기에 Haksoo는 <span class="highlight">간단한 소설을 읽으며 기본적인 줄거리</span>를 이해하는 데 중점을 두었습니다.</p>
+                        <div class="quote">
+                            "학수 seemed to have a little trouble understanding the book. With the few questions asked about the character and the plot, the student wasn't able to show much comprehension of the book."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">중간 단계 (3-4월)</div>
+                        <div class="book-list">
+                            <div class="book-item">
+                                <div class="book-level">중</div>
+                                Dragon Masters
+                            </div>
+                            <div class="book-item">
+                                <div class="book-level">중</div>
+                                Sea Turtles
+                            </div>
+                            <div class="book-item">
+                                <div class="book-level">중</div>
+                                Rocks and Minerals
+                            </div>
+                        </div>
+                        <p>이 시기에 Haksoo는 <span class="highlight">판타지 시리즈와 논픽션 과학 주제</span>의 책을 읽으며 독서 영역을 넓혔습니다.</p>
+                        <div class="quote">
+                            "Haksu explained how the Wind Dragon was the last key to stop the spell and explained Queen Amaru's support. He shared that the Dragon Masters learned to work together in the battle."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">현재 단계 (5월)</div>
+                        <div class="book-list">
+                            <div class="book-item">
+                                <div class="book-level">중</div>
+                                Finding the Cure
+                            </div>
+                            <div class="book-item">
+                                <div class="book-level">중</div>
+                                The Wizard's Secret
+                            </div>
+                        </div>
+                        <p>현재 Haksoo는 <span class="highlight">더 복잡한 판타지 이야기와 모험 소설</span>을 읽으며 등장인물 간의 관계와 문제 해결 과정을 파악하는 능력을 보여주고 있습니다.</p>
+                        <div class="quote">
+                            "Haksu explained why the prince suspected the wizard and how the real culprit was discovered with help from the witch. He described the teamwork among Lucas, Clara, and Ruskin, and how they stopped the curse."
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">독서 성과 분석</div>
+                <p>Haksoo는 5개월 동안 <span class="highlight">판타지 소설과 논픽션 과학 도서</span>를 균형 있게 읽으며 다양한 주제에 대한 이해력을 향상시켰습니다. 특히 Dragon Masters 시리즈를 통해 <span class="highlight">연속된 이야기를 따라가며 캐릭터의 발전과 사건의 연결성</span>을 이해하는 능력이 크게 향상되었습니다.</p>
+            </div>
+        </div>
+        
+        <!-- Speaking Development -->
+        <div class="card">
+            <h3><span class="icon icon-speech"></span> 말하기 능력 발전</h3>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">초기 단계</div>
+                        <p>초기에 Haksoo는 간단한 응답으로 기본적인 이해를 보여주었지만, 완전한 문장으로 표현하는 데 어려움이 있었습니다.</p>
+                        <div class="quote">
+                            "Haksoo was very shy today, and did not answer the questions fully. His understanding of the book seemed a bit weak, but he still tried to explain what he knew."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">중간 단계</div>
+                        <p>점차 더 완전한 문장으로 생각을 표현하기 시작했으며, 이야기의 핵심 요소를 파악하는 능력이 향상되었습니다.</p>
+                        <div class="quote">
+                            "Haksoo explained that he learned how igneous rocks are formed from magma and gave a clear example of lava cooling into rock. The teacher helped him expand on his answers using full sentences and gave vocabulary support for words like 'pressure' and 'gemstone.'"
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">현재 단계</div>
+                        <p>현재 Haksoo는 교사의 가이드를 받아 더 완전한 문장을 구성할 수 있으며, 이야기의 핵심 요소와 등장인물의 관계를 명확하게 설명할 수 있습니다.</p>
+                        <div class="quote">
+                            "학수 said Lucas and Clara found the sea monster and explained that the sea monster was angry because of the trash. He showed clear understanding of the cause of the sea monster's anger and expressed the idea with confidence."
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">주요 향상 영역</div>
+                <ul>
+                    <li><span class="highlight">완전한 문장 구성:</span> 교사의 도움을 받아 더 완전한 문장으로 생각을 표현하는 능력이 향상되었습니다.</li>
+                    <li><span class="highlight">핵심 요소 설명:</span> 이야기의 중요한 부분을 파악하고 설명하는 능력이 발전했습니다.</li>
+                    <li><span class="highlight">자신감:</span> 점차 더 자신감 있게 말하기 시작했습니다.</li>
+                    <li><span class="highlight">주제별 어휘:</span> 판타지와 과학 주제에 관련된 어휘를 이해하고 사용하는 능력이 향상되었습니다.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Writing Development -->
+        <div class="card">
+            <h3><span class="icon icon-writing"></span> 작문 능력 발전</h3>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">초기 단계</div>
+                        <p>Haksoo의 초기 작문은 기본적인 수준이었으며, 문법적 오류가 다소 있었습니다.</p>
+                        <div class="quote">
+                            "Haksu's writing session today had him describe the main characters' actions and looks. We went over the spelling of some words and added detail to his writing as we discussed ways to describe a character's appearance in various ways."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">중간 단계</div>
+                        <p>점차 더 체계적인 글쓰기 능력을 보여주기 시작했으며, 핵심 사건을 논리적 순서로 설명할 수 있게 되었습니다.</p>
+                        <div class="quote">
+                            "Haksoo identified important events from the beginning to the end of the story, showing good organization. With guidance, he worked on using the correct past tense forms of verbs and maintaining consistency in tense."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">현재 단계</div>
+                        <p>현재 Haksoo는 더 명확하고 체계적인 글쓰기를 할 수 있으며, 시제의 일관성과 문장 구조에 대한 이해가 향상되었습니다.</p>
+                        <div class="quote">
+                            "Haksoo wrote about how sedimentary rocks are formed and used the example of sand turning into sandstone, which showed a solid grasp of the concept. His writing had clear sentence structure and was logically organized, with each idea flowing naturally into the next."
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">주요 향상 영역</div>
+                <ul>
+                    <li><span class="highlight">문장 구조:</span> 더 명확하고 완전한 문장을 구성하는 능력이 향상되었습니다.</li>
+                    <li><span class="highlight">시제 일관성:</span> 과거 시제와 현재 시제를 일관되게 사용하는 능력이 발전했습니다.</li>
+                    <li><span class="highlight">논리적 조직:</span> 이야기나 정보를 논리적 순서로 구성하는 능력이 향상되었습니다.</li>
+                    <li><span class="highlight">세부 설명:</span> 주제에 대한 구체적인 설명과 예시를 제공하는 능력이 발전했습니다.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Key Growth Areas -->
+        <div class="card">
+            <h3><span class="icon icon-growth"></span> 주요 성장 영역</h3>
+            
+            <div class="two-column">
+                <div class="column-60">
+                    <div class="factor-title">1. 이야기 이해 및 기억력</div>
+                    <p>Haksoo는 <span class="highlight">이야기의 주요 사건과 등장인물의 행동을 기억하고 설명</span>하는 능력이 크게 향상되었습니다. 점차 복잡한 이야기 구조와 다양한 등장인물의 관계를 이해하고 설명할 수 있게 되었습니다.</p>
+                    
+                    <div class="factor-title">2. 다양한 주제에 대한 관심</div>
+                    <p>판타지 소설부터 논픽션 과학 주제까지, <span class="highlight">다양한 영역의 책을 읽으며 어휘와 지식의 폭을 넓혔습니다</span>. 특히 자연과학(바다 거북이, 암석과 광물)과 판타지(드래곤 마스터) 주제에 높은 관심과 이해도를 보여주었습니다.</p>
+                </div>
+                
+                <div class="column-40">
+                    <div class="factor-title">3. 표현력 향상</div>
+                    <p>처음에는 짧고 단순한 응답에 그쳤지만, 점차 <span class="highlight">더 완전한 문장으로 생각을 표현</span>하는 능력이 발전했습니다. 교사의 도움을 받아 자신의 생각을 더 명확하게 전달할 수 있게 되었습니다.</p>
+                    
+                    <div class="factor-title">4. 문법적 이해</div>
+                    <p>시제의 일관성, 문장 구조, 단어 선택 등 <span class="highlight">기본적인 문법 요소에 대한 이해</span>가 향상되었습니다. 특히 과거 시제 동사 형태를 올바르게 사용하는 능력이 발전했습니다.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Future Outlook -->
+        <div class="card">
+            <h3><span class="icon icon-future"></span> 향후 전망 및 추천사항</h3>
+            
+            <div class="factor-box">
+                <div class="factor-title">독서 및 어휘 개발</div>
+                <ul>
+                    <li><span class="highlight">계속해서 다양한 주제의 책을 읽으며 어휘 확장</span> (현재 관심사인 판타지와 과학 주제 유지)</li>
+                    <li>더 긴 챕터북에 도전하여 독서 지구력 향상</li>
+                    <li>새로운 어휘를 노트에 정리하고 문장에서 활용하는 연습</li>
+                </ul>
+            </div>
+            
+            <div class="factor-box">
+                <div class="factor-title">말하기 및 작문 능력</div>
+                <ul>
+                    <li><span class="highlight">완전한 문장으로 대답하는 연습 지속</span> (주어, 동사, 목적어 포함)</li>
+                    <li>시제의 일관성 유지하기 (특히 과거 시제의 올바른 사용)</li>
+                    <li>연결어(and, but, because)를 사용하여 문장 연결하기</li>
+                    <li>이야기를 순서대로 요약하는 연습하기</li>
+                </ul>
+            </div>
+            
+            <p>Haksoo는 <span class="highlight">판타지와 과학에 대한 강한 관심</span>을 바탕으로 영어 학습에 지속적인 동기를 가지고 있습니다. 이러한 관심사를 활용하여 어휘력을 확장하고, 완전한 문장으로 생각을 표현하는 연습을 계속한다면, 영어 실력이 더욱 향상될 것입니다.</p>
+        </div>
+        
+        <!-- Conclusion -->
+        <div class="card">
+            <h3>결론</h3>
+            
+            <div class="factor-box">
+                <p>Haksoo의 영어 학습 여정은 <span class="highlight">이야기 이해력과 표현 능력의 꾸준한 향상</span>을 보여주었습니다. 판타지와 과학 주제에 대한 강한 관심을 바탕으로 독서 영역을 넓히고, 점차 더 완전한 문장으로 생각을 표현할 수 있게 되었습니다.</p>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">이야기 이해 및 기억력</span> - 중요한 사건과 등장인물의 행동 설명 능력 향상</div>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">다양한 주제 탐구</span> - 판타지와 논픽션 과학 도서를 통한 어휘 확장</div>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">표현력 발전</span> - 더 완전한 문장으로 생각 전달 능력 향상</div>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checklist-icon icon icon-check"></div>
+                <div><span class="highlight">문법적 이해</span> - 시제, 문장 구조에 대한 기본 이해 발전</div>
+            </div>
+            
+            <p style="margin-top: 20px;">Haksoo의 <span class="highlight">꾸준한 노력과 관심사 기반 학습</span>은 앞으로의 영어 발전에 큰 도움이 될 것입니다. 특히 판타지와 과학이라는 관심 분야를 통해 자연스럽게 어휘력을 확장하고, 교사의 가이드를 따라 더 명확한 표현 능력을 기른다면, 더욱 균형 잡힌 영어 실력을 갖출 수 있을 것입니다.</p>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>이노블스 영어도서관</p>
+        </div>
+    </footer>
+</body>
+</html>
